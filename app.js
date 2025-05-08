@@ -2,21 +2,20 @@ document.getElementById('export-pdf').addEventListener('click', function () {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    // Ambil data
     const operator = document.getElementById('operator-name').value;
     const machine = document.getElementById('machine-id').value;
-    const table = document.querySelector('table').cloneNode(true);
+    const table = document.querySelector('table');
 
-    // Tambahkan judul dan info
+    // Tambah header teks
     doc.setFontSize(14);
     doc.text("Laporan P2H Crimping Machine", 10, 10);
     doc.setFontSize(12);
     doc.text(`Nama Operator: ${operator}`, 10, 20);
     doc.text(`ID Mesin: ${machine}`, 10, 28);
 
-    // Konversi tabel ke teks lalu export
-    let y = 38;
-    table.querySelectorAll("tr").forEach((row, i) => {
+    // Ekstrak isi tabel dan cetak
+    let y = 40;
+    table.querySelectorAll("tr").forEach(row => {
         let text = '';
         row.querySelectorAll("td, th").forEach(cell => {
             text += cell.innerText + " | ";
@@ -25,5 +24,22 @@ document.getElementById('export-pdf').addEventListener('click', function () {
         y += 8;
     });
 
-    doc.save("p2h-checklist.pdf");
+    // Tambahkan gambar upload
+    const fileInput = document.getElementById('photo-upload');
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const imgData = e.target.result;
+
+            // Tambah label & gambar ke PDF
+            doc.setFontSize(12);
+            doc.text("Foto Kondisi Mesin:", 10, y + 10);
+            doc.addImage(imgData, 'JPEG', 10, y + 15, 80, 60); // (x, y, width, height)
+            doc.save("p2h-checklist.pdf");
+        };
+        reader.readAsDataURL(file);
+    } else {
+        doc.save("p2h-checklist.pdf");
+    }
 });
