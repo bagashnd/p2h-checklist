@@ -29,10 +29,43 @@ document.getElementById('export-pdf').addEventListener('click', function() {
 });
 
 // Export to Excel
-document.getElementById('export-excel').addEventListener('click', function() {
-    const table = document.querySelector('table');
-    const wb = XLSX.utils.table_to_book(table, {sheet: "P2H Checklist"});
-    XLSX.writeFile(wb, 'p2h-checklist.xlsx');
+document.getElementById('export-excel').addEventListener('click', function () {
+    // Ambil data form
+    const operatorName = document.getElementById('operator-name').value;
+    const machineId = document.getElementById('machine-id').value;
+
+    // Ambil status dari setiap komponen
+    const checklist = [
+        { Komponen: "Power Supply", Status: document.querySelector('[name="power-supply-status"]').value },
+        { Komponen: "Hydraulic Unit", Status: document.querySelector('[name="hydraulic-unit-status"]').value },
+        { Komponen: "Crimp Dies", Status: document.querySelector('[name="crimp-dies-status"]').value },
+        { Komponen: "Cylinder Movement", Status: document.querySelector('[name="cylinder-movement-status"]').value },
+        { Komponen: "Control Panel", Status: document.querySelector('[name="control-panel-status"]').value },
+        { Komponen: "Grease Point", Status: document.querySelector('[name="grease-point-status"]').value },
+        { Komponen: "Emergency Stop", Status: document.querySelector('[name="emergency-stop-status"]').value }
+    ];
+
+    // Format data untuk Excel
+    const data = [
+        ["Nama Operator", operatorName],
+        ["ID Mesin", machineId],
+        [],
+        ["Komponen", "Status"]
+    ];
+
+    checklist.forEach(item => {
+        data.push([item.Komponen, item.Status]);
+    });
+
+    // Buat worksheet dan workbook
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "P2H");
+
+    // Simpan file
+    XLSX.writeFile(wb, `P2H_${operatorName || 'operator'}.xlsx`);
+});
+
 });
 
 document.getElementById('p2h-checklist').addEventListener('submit', function (e) {
