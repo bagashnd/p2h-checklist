@@ -42,4 +42,18 @@ document.getElementById('export-pdf').addEventListener('click', function () {
     } else {
         doc.save("p2h-checklist.pdf");
     }
+    document.getElementById('p2h-checklist').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const photoInput = document.getElementById('photo-upload');
+    if (!photoInput.files || photoInput.files.length === 0) {
+        alert("Silakan upload gambar terlebih dahulu sebelum submit.");
+        return false;
+    }
+
+    // Sembunyikan form dan tampilkan halaman konfirmasi
+    document.getElementById('p2h-form').style.display = 'none';
+    document.getElementById('submitted-page').style.display = 'block';
+});
+
 });
