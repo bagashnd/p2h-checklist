@@ -33,4 +33,17 @@ document.getElementById('export-excel').addEventListener('click', function() {
     const table = document.querySelector('table');
     const wb = XLSX.utils.table_to_book(table, {sheet: "P2H Checklist"});
     XLSX.writeFile(wb, 'p2h-checklist.xlsx');
+
+document.getElementById('p2h-checklist').addEventListener('submit', function (e) {
+    const photoInput = document.getElementById('photo-upload');
+    if (!photoInput.files || photoInput.files.length === 0) {
+        alert("Silakan upload gambar terlebih dahulu sebelum submit.");
+        e.preventDefault();
+        return false;
+    }
+
+    alert("Checklist berhasil disubmit!");
+    // Lanjutkan proses submit sesuai backend atau penyimpanan yang Anda pakai
+});
+
 });
