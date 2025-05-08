@@ -134,3 +134,17 @@ th {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
+#submitted-page h2 {
+    color: #28a745;
+    font-size: 26px;
+}
+
+#submitted-page p {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+#submitted-page button {
+    background-color: #28a745;
+}
