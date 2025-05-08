@@ -11,6 +11,9 @@
 <body>
     <!-- Login Page -->
     <div id="login-page">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
         <h2>Login Operator</h2>
         <form id="login-form">
             <label for="username">Username:</label>
@@ -23,48 +26,86 @@
 
     <!-- Main Content - P2H Form -->
     <div id="p2h-form" style="display:none;">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
         <h1>Pengecekan & Pemeriksaan Harian</h1>
         <form id="p2h-checklist">
             <table>
                 <tr>
                     <th>Komponen</th>
                     <th>Pemeriksaan</th>
-                    <th>Status (OK/Perlu Tindakan)</th>
+                    <th>Status</th>
                 </tr>
                 <tr>
                     <td>Power Supply</td>
                     <td>Kabel dan koneksi aman</td>
-                    <td><input type="text" name="power-supply-status" required></td>
+                    <td>
+                        <select name="power-supply-status">
+                            <option value="OK">OK</option>
+                            <option value="Perlu Tindakan">Perlu Tindakan</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Hydraulic Unit</td>
                     <td>Cek level oli, pastikan tidak bocor</td>
-                    <td><input type="text" name="hydraulic-unit-status" required></td>
+                    <td>
+                        <select name="hydraulic-unit-status">
+                            <option value="OK">OK</option>
+                            <option value="Perlu Tindakan">Perlu Tindakan</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Crimp Dies</td>
                     <td>Bersih, tidak aus atau retak</td>
-                    <td><input type="text" name="crimp-dies-status" required></td>
+                    <td>
+                        <select name="crimp-dies-status">
+                            <option value="OK">OK</option>
+                            <option value="Perlu Tindakan">Perlu Tindakan</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Cylinder Movement</td>
                     <td>Pastikan pergerakan lancar, tidak macet</td>
-                    <td><input type="text" name="cylinder-movement-status" required></td>
+                    <td>
+                        <select name="cylinder-movement-status">
+                            <option value="OK">OK</option>
+                            <option value="Perlu Tindakan">Perlu Tindakan</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Control Panel</td>
                     <td>Tombol dan indikator berfungsi dengan baik</td>
-                    <td><input type="text" name="control-panel-status" required></td>
+                    <td>
+                        <select name="control-panel-status">
+                            <option value="OK">OK</option>
+                            <option value="Perlu Tindakan">Perlu Tindakan</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Grease Point</td>
                     <td>Pastikan pelumas cukup di titik yang tepat</td>
-                    <td><input type="text" name="grease-point-status" required></td>
+                    <td>
+                        <select name="grease-point-status">
+                            <option value="OK">OK</option>
+                            <option value="Perlu Tindakan">Perlu Tindakan</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Emergency Stop</td>
                     <td>Berfungsi normal, bisa dihentikan dengan mudah</td>
-                    <td><input type="text" name="emergency-stop-status" required></td>
+                    <td>
+                        <select name="emergency-stop-status">
+                            <option value="OK">OK</option>
+                            <option value="Perlu Tindakan">Perlu Tindakan</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
             <button type="submit">Submit</button>
