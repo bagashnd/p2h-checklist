@@ -30,16 +30,7 @@
             <img src="logo.png" alt="Logo" class="logo">
         </div>
         <h1>Pengecekan & Pemeriksaan Harian</h1>
-        <form id="p2h-checklist" enctype="multipart/form-data">
-    <!-- Informasi Umum -->
-    <div class="form-section">
-        <label for="operator-name">Nama Operator:</label>
-        <input type="text" id="operator-name" name="operator-name" required>
-
-        <label for="machine-id">ID Mesin:</label>
-        <input type="text" id="machine-id" name="machine-id" required>
-    </div>
-            
+        <form id="p2h-checklist">
             <table>
                 <tr>
                     <th>Komponen</th>
@@ -117,25 +108,10 @@
                     </td>
                 </tr>
             </table>
-
-        <div class="form-section">
-        <label for="photo-upload">Upload Gambar (kondisi mesin):</label><br>
-        <input type="file" id="photo-upload" name="photo-upload" accept="image/*" required>
-    </div> 
-
-           <button type="submit">Submit</button>
-    <button type="button" id="export-pdf">Export to PDF</button>
-    <button type="button" id="export-excel">Export to Excel</button>
-</form>
-<!-- Halaman Konfirmasi Setelah Submit -->
-<div id="submitted-page" style="display: none; text-align: center; padding: 40px;">
-    <img src="logo.png" alt="Logo" class="logo" style="width: 100px; margin-bottom: 20px;">
-    <h2>Terima Kasih!</h2>
-    <p>Checklist harian Anda telah berhasil dikirim.</p>
-    <p>Silakan tutup halaman ini atau kembali ke dashboard untuk entri baru.</p>
-    <button onclick="location.reload()">Isi Form Lagi</button>
-</div>
-
+            <button type="submit">Submit</button>
+            <button type="button" id="export-pdf">Export to PDF</button>
+            <button type="button" id="export-excel">Export to Excel</button>
+        </form>
     </div>
 
     <script src="app.js"></script>
