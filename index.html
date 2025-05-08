@@ -30,7 +30,15 @@
             <img src="logo.png" alt="Logo" class="logo">
         </div>
         <h1>Pengecekan & Pemeriksaan Harian</h1>
-        <form id="p2h-checklist">
+        <form id="p2h-checklist" enctype="multipart/form-data">
+    <!-- Informasi Umum -->
+    <div class="form-section">
+        <label for="operator-name">Nama Operator:</label>
+        <input type="text" id="operator-name" name="operator-name" required>
+
+        <label for="machine-id">ID Mesin:</label>
+        <input type="text" id="machine-id" name="machine-id" required>
+    </div>
             <table>
                 <tr>
                     <th>Komponen</th>
