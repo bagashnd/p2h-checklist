@@ -104,6 +104,14 @@ th, td {
 th {
     background-color: #f1f1f1;
 }
+input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
