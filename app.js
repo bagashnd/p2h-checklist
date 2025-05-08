@@ -65,6 +65,13 @@ document.getElementById('export-excel').addEventListener('click', function () {
     // Simpan file
     XLSX.writeFile(wb, `P2H_${operatorName || 'operator'}.xlsx`);
 });
+// Mengisi input tanggal secara otomatis dengan tanggal saat ini
+window.onload = function() {
+    const dateInput = document.getElementById('tanggal-pengisian');
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
+    dateInput.value = formattedDate; // Mengisi tanggal saat ini
+};
 
 });
 
