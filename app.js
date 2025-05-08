@@ -1,49 +1,29 @@
-document.getElementById('login-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Hardcoded login check for demo purposes
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    
-    if (username === "operator" && password === "password123") {
-        document.getElementById('login-page').style.display = 'none';
-        document.getElementById('p2h-form').style.display = 'block';
-    } else {
-        alert('Login failed. Please try again.');
-    }
-});
-
-// Export to PDF
-document.getElementById('export-pdf').addEventListener('click', function() {
+document.getElementById('export-pdf').addEventListener('click', function () {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    const table = document.querySelector('table');
-    let content = table.innerHTML;
+    // Ambil data
+    const operator = document.getElementById('operator-name').value;
+    const machine = document.getElementById('machine-id').value;
+    const table = document.querySelector('table').cloneNode(true);
 
-    doc.html(content, {
-        callback: function (doc) {
-            doc.save('p2h-checklist.pdf');
-        }
+    // Tambahkan judul dan info
+    doc.setFontSize(14);
+    doc.text("Laporan P2H Crimping Machine", 10, 10);
+    doc.setFontSize(12);
+    doc.text(`Nama Operator: ${operator}`, 10, 20);
+    doc.text(`ID Mesin: ${machine}`, 10, 28);
+
+    // Konversi tabel ke teks lalu export
+    let y = 38;
+    table.querySelectorAll("tr").forEach((row, i) => {
+        let text = '';
+        row.querySelectorAll("td, th").forEach(cell => {
+            text += cell.innerText + " | ";
+        });
+        doc.text(text.trim(), 10, y);
+        y += 8;
     });
-});
 
-// Export to Excel
-document.getElementById('export-excel').addEventListener('click', function() {
-    const table = document.querySelector('table');
-    const wb = XLSX.utils.table_to_book(table, {sheet: "P2H Checklist"});
-    XLSX.writeFile(wb, 'p2h-checklist.xlsx');
-
-document.getElementById('p2h-checklist').addEventListener('submit', function (e) {
-    const photoInput = document.getElementById('photo-upload');
-    if (!photoInput.files || photoInput.files.length === 0) {
-        alert("Silakan upload gambar terlebih dahulu sebelum submit.");
-        e.preventDefault();
-        return false;
-    }
-
-    alert("Checklist berhasil disubmit!");
-    // Lanjutkan proses submit sesuai backend atau penyimpanan yang Anda pakai
-});
-
+    doc.save("p2h-checklist.pdf");
 });
