@@ -114,3 +114,23 @@ th {
         width: 60px;
     }
 }
+.form-section {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-section input[type="text"],
+.form-section input[type="file"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
