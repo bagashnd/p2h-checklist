@@ -1,150 +1,122 @@
-/* Reset & Base Styles */
-* {
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color: #f4f7fb;
 }
 
-body {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    background-color: #f9fafb;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
-}
-
-/* Centered Container */
-#login-page,
-#p2h-form {
-    max-width: 600px;
-    margin: 40px auto;
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 30px 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    text-align: center;
-}
-
-/* Logo */
-.logo-container {
-    margin-bottom: 20px;
-}
-.logo {
-    width: 80px;
-    height: auto;
-}
-
-/* Headings */
 h1, h2 {
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #111827;
+    color: #333;
 }
 
-/* Form Inputs & Select */
-input[type="text"],
-input[type="password"],
-select {
-    width: 100%;
-    padding: 10px 14px;
-    margin: 10px 0;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 15px;
-    background-color: #f9fafb;
-    transition: border-color 0.2s;
+h1 {
+    font-size: 28px;
 }
 
-input:focus,
-select:focus {
-    border-color: #2563eb;
-    outline: none;
-    background-color: #fff;
+h2 {
+    font-size: 22px;
 }
 
-/* Buttons */
 button {
-    background-color: #2563eb;
+    background-color: #007bff;
     color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    margin: 8px 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 15px;
-    transition: background-color 0.2s ease;
+    margin: 10px 5px;
+    font-size: 16px;
 }
 
 button:hover {
-    background-color: #1d4ed8;
+    background-color: #0056b3;
 }
 
-/* Table */
+input[type="text"], input[type="password"], select {
+    width: 250px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Login Page */
+#login-page {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+#login-page .logo-container {
+    margin-bottom: 20px;
+}
+
+#login-page .logo {
+    width: 100px;
+    height: auto;
+}
+
+/* Main Content - Dashboard */
+#p2h-form {
+    text-align: center;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#p2h-form .logo-container {
+    margin-bottom: 20px;
+}
+
+#p2h-form .logo {
+    width: 120px;
+    height: auto;
+}
+
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    font-size: 15px;
 }
 
 th, td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 12px;
     text-align: left;
+    border: 1px solid #ddd;
 }
 
 th {
-    background-color: #f3f4f6;
-    color: #111827;
-    font-weight: 500;
+    background-color: #f1f1f1;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    #login-page,
-    #p2h-form {
-        padding: 20px 15px;
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
     }
 
-    th, td {
-        font-size: 14px;
+    #login-page, #p2h-form {
+        width: 100%;
+        margin-top: 20px;
     }
 
-    .logo {
-        width: 60px;
+    input[type="text"], input[type="password"], select {
+        width: 100%;
     }
-}
-.form-section {
-    margin: 20px 0;
-    text-align: left;
-}
-
-.form-section label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-.form-section input[type="text"],
-.form-section input[type="file"] {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-#submitted-page h2 {
-    color: #28a745;
-    font-size: 26px;
-}
-
-#submitted-page p {
-    font-size: 18px;
-    color: #444;
-    margin-bottom: 20px;
-}
-
-#submitted-page button {
-    background-color: #28a745;
 }
