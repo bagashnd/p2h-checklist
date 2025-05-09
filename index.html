@@ -1,134 +1,153 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P2H - Crimping Machine</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPDF/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>P2H Crimping Machine</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    h2 { color: #2c3e50; }
+    label { display: block; margin-top: 10px; }
+    input, select { padding: 5px; width: 100%; margin-top: 5px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background-color: #f0f0f0; }
+    .hidden { display: none; }
+    button { margin-top: 15px; padding: 10px 20px; }
+  </style>
 </head>
 <body>
-    <!-- Login Page -->
-    <div id="login-page">
-        <img src="logo.png" alt="Logo Perusahaan" class="logo">
-        <h2>Login Operator</h2>
-        <form id="login-form">
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </div>
 
-    <!-- Dashboard -->
-    <div id="p2h-form" style="display:none;">
-        <div class="header">
-            <img src="logo.png" alt="Logo" class="logo small">
-            <h1>P2H Crimping Machine</h1>
-        </div>
-        <form id="p2h-checklist">
-            <table>
-                <tr>
-                    <th>Komponen</th>
-                    <th>Pemeriksaan</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>Power Supply</td>
-                    <td>Kabel dan koneksi aman</td>
-                    <td>
-                        <select name="power-supply-status" required>
-                            <option value="">Pilih</option>
-                            <option value="OK">OK</option>
-                            <option value="Perlu Tindakan">Perlu Tindakan</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hydraulic Unit</td>
-                    <td>Cek level oli, pastikan tidak bocor</td>
-                    <td>
-                        <select name="hydraulic-unit-status" required>
-                            <option value="">Pilih</option>
-                            <option value="OK">OK</option>
-                            <option value="Perlu Tindakan">Perlu Tindakan</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Crimp Dies</td>
-                    <td>Bersih, tidak aus atau retak</td>
-                    <td>
-                        <select name="crimp-dies-status" required>
-                            <option value="">Pilih</option>
-                            <option value="OK">OK</option>
-                            <option value="Perlu Tindakan">Perlu Tindakan</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Cylinder Movement</td>
-                    <td>Pergerakan lancar, tidak macet</td>
-                    <td>
-                        <select name="cylinder-movement-status" required>
-                            <option value="">Pilih</option>
-                            <option value="OK">OK</option>
-                            <option value="Perlu Tindakan">Perlu Tindakan</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Control Panel</td>
-                    <td>Tombol berfungsi baik</td>
-                    <td>
-                        <select name="control-panel-status" required>
-                            <option value="">Pilih</option>
-                            <option value="OK">OK</option>
-                            <option value="Perlu Tindakan">Perlu Tindakan</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Grease Point</td>
-                    <td>Cukup pelumas</td>
-                    <td>
-                        <select name="grease-point-status" required>
-                            <option value="">Pilih</option>
-                            <option value="OK">OK</option>
-                            <option value="Perlu Tindakan">Perlu Tindakan</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Emergency Stop</td>
-                    <td>Berfungsi normal</td>
-                    <td>
-                        <select name="emergency-stop-status" required>
-                            <option value="">Pilih</option>
-                            <option value="OK">OK</option>
-                            <option value="Perlu Tindakan">Perlu Tindakan</option>
-                        </select>
-                    </td>
-                </tr>
-                <!-- Tanggal Pengisian -->
-                <tr>
-                    <td>Tanggal Pengisian</td>
-                    <td>
-                        <input type="date" id="tanggal-pengisian" name="tanggal-pengisian" required>
-                    </td>
-                </tr>
+  <!-- Login Section -->
+  <div id="login-section">
+    <h2>Login Operator</h2>
+    <label>Nama Operator:
+      <input type="text" id="operator-name" placeholder="Masukkan nama Anda" required />
+    </label>
+    <label>Password:
+      <input type="password" id="operator-password" placeholder="Masukkan password" required />
+    </label>
+    <button onclick="login()">Login</button>
+  </div>
 
-                    </td>
-                </tr>
-            </table>
-            <div class="button-group">
-                <button type="submit">Submit</button>
-                <button type="button" id="export-pdf">Export PDF</button>
-                <button type="button" id="export-excel">Export Excel</button>
-            </div>
-        </form>
-    </div>
+  <!-- P2H Form Section -->
+  <div id="p2h-form-section" class="hidden">
+    <h2>Pengecekan & Pemeriksaan Harian Crimping Machine</h2>
 
-    <script src="app.js"></script>
+    <label>Tanggal Pengisian:
+      <input type="date" id="tanggal-pengisian" />
+    </label>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Komponen</th>
+          <th>Pemeriksaan</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Power Supply</td>
+          <td>Kabel dan koneksi aman</td>
+          <td>
+            <select>
+              <option>OK</option>
+              <option>Perlu Tindakan</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Hydraulic Unit</td>
+          <td>Cek level oli, tidak bocor</td>
+          <td>
+            <select>
+              <option>OK</option>
+              <option>Perlu Tindakan</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Crimp Dies</td>
+          <td>Bersih, tidak aus/retak</td>
+          <td>
+            <select>
+              <option>OK</option>
+              <option>Perlu Tindakan</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Cylinder Movement</td>
+          <td>Lancar, tidak macet</td>
+          <td>
+            <select>
+              <option>OK</option>
+              <option>Perlu Tindakan</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Control Panel</td>
+          <td>Tombol berfungsi baik</td>
+          <td>
+            <select>
+              <option>OK</option>
+              <option>Perlu Tindakan</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Grease Point</td>
+          <td>Cukup pelumas</td>
+          <td>
+            <select>
+              <option>OK</option>
+              <option>Perlu Tindakan</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Emergency Stop</td>
+          <td>Berfungsi normal</td>
+          <td>
+            <select>
+              <option>OK</option>
+              <option>Perlu Tindakan</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button onclick="submitForm()">Kirim Pemeriksaan</button>
+  </div>
+
+  <script>
+    function login() {
+      const name = document.getElementById("operator-name").value.trim();
+      const pass = document.getElementById("operator-password").value;
+
+      // Sementara hanya validasi nama tidak kosong
+      if (name && pass) {
+        document.getElementById("login-section").classList.add("hidden");
+        document.getElementById("p2h-form-section").classList.remove("hidden");
+      } else {
+        alert("Nama dan password harus diisi!");
+      }
+    }
+
+    function submitForm() {
+      const date = document.getElementById("tanggal-pengisian").value;
+      if (!date) {
+        alert("Tanggal pengisian wajib diisi.");
+        return;
+      }
+
+      alert("Form berhasil dikirim!\nTanggal: " + date);
+      // Di versi nyata, data akan dikirim ke server
+    }
+  </script>
+
 </body>
 </html>
