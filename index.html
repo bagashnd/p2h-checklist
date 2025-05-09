@@ -293,40 +293,44 @@
     }
   </script>
 
- <!-- SheetJS Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
   function exportToExcel() {
-    // Membuat workbook baru
     const wb = XLSX.utils.book_new();
+    const ws_data = [];
 
-    // Inisialisasi data header
-    const ws_data = [["Komponen", "Status", "Remarks"]];
+    // Ambil data tambahan dari input form
+    const operator = document.getElementById("namaOperator")?.value || "";
+    const idMesin = document.getElementById("idMesin")?.value || "";
+    const tanggal = document.getElementById("tanggalPengisian")?.value || "";
+    const jam = document.getElementById("jamPengisian")?.value || "";
 
-    // Ambil semua baris dari tabel
+    // Tambahkan info form ke baris atas file
+    ws_data.push(["Nama Operator", operator]);
+    ws_data.push(["ID Mesin", idMesin]);
+    ws_data.push(["Tanggal Pengisian", tanggal]);
+    ws_data.push(["Jam Pengisian", jam]);
+    ws_data.push([]); // baris kosong sebelum tabel
+
+    // Header tabel
+    ws_data.push(["Komponen", "Status", "Remarks"]);
+
+    // Ambil data checklist dari tabel
     document.querySelectorAll("table tbody tr").forEach(row => {
       const cells = row.querySelectorAll("td");
-
-      // Ambil nilai komponen, status, dan remarks
       const komponen = cells[0].innerText;
-      const status = cells[1].querySelector("select")?.value || '';
-      const remarks = cells[2].querySelector("input")?.value || '';
-
-      // Tambahkan ke array data
+      const status = cells[1].querySelector("select")?.value || "";
+      const remarks = cells[2].querySelector("input")?.value || "";
       ws_data.push([komponen, status, remarks]);
     });
 
-    // Buat worksheet dari array
+    // Buat worksheet & simpan
     const ws = XLSX.utils.aoa_to_sheet(ws_data);
-
-    // Tambahkan worksheet ke workbook
     XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-
-    // Simpan file sebagai .xlsx
     XLSX.writeFile(wb, "P2H-Crimping.xlsx");
   }
 </script>
+
 
   }
 </body>
