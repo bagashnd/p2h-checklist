@@ -12,7 +12,11 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
         alert('Login failed. Please try again.');
     }
 });
-
+// Isi tanggal otomatis saat form muncul
+    const dateInput = document.getElementById('tanggal-pengisian');
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    dateInput.value = formattedDate;
 // Export to PDF
 document.getElementById('export-pdf').addEventListener('click', function() {
     const { jsPDF } = window.jspdf;
@@ -73,7 +77,6 @@ window.onload = function() {
     dateInput.value = formattedDate; // Mengisi tanggal saat ini
 };
 
-});
 
 document.getElementById('p2h-checklist').addEventListener('submit', function (e) {
     const photoInput = document.getElementById('photo-upload');
