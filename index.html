@@ -24,7 +24,7 @@
     .container {
       background-color: #fff;
       width: 100%;
-      max-width: 600px;
+      max-width: 800px;
       padding: 40px 30px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -91,9 +91,49 @@
       display: none;
     }
 
+    /* Tabel Modern */
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f7f7f7;
+      font-weight: 600;
+      color: #333;
+    }
+
+    td select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fafafa;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 20px;
+      }
+
+      table, th, td {
+        font-size: 12px;
+      }
+
+      button {
+        font-size: 14px;
       }
     }
   </style>
@@ -130,54 +170,80 @@
 
       <h3>Checklist Harian</h3>
 
-      <label>Power Supply:
-        <select>
-          <option>OK</option>
-          <option>Perlu Tindakan</option>
-        </select>
-      </label>
-
-      <label>Hydraulic Unit:
-        <select>
-          <option>OK</option>
-          <option>Perlu Tindakan</option>
-        </select>
-      </label>
-
-      <label>Crimp Dies:
-        <select>
-          <option>OK</option>
-          <option>Perlu Tindakan</option>
-        </select>
-      </label>
-
-      <label>Cylinder Movement:
-        <select>
-          <option>OK</option>
-          <option>Perlu Tindakan</option>
-        </select>
-      </label>
-
-      <label>Control Panel:
-        <select>
-          <option>OK</option>
-          <option>Perlu Tindakan</option>
-        </select>
-      </label>
-
-      <label>Grease Point:
-        <select>
-          <option>OK</option>
-          <option>Perlu Tindakan</option>
-        </select>
-      </label>
-
-      <label>Emergency Stop:
-        <select>
-          <option>OK</option>
-          <option>Perlu Tindakan</option>
-        </select>
-      </label>
+      <!-- Tabel Checklist -->
+      <table>
+        <thead>
+          <tr>
+            <th>Komponen</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Power Supply</td>
+            <td>
+              <select>
+                <option>OK</option>
+                <option>Perlu Tindakan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Hydraulic Unit</td>
+            <td>
+              <select>
+                <option>OK</option>
+                <option>Perlu Tindakan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Crimp Dies</td>
+            <td>
+              <select>
+                <option>OK</option>
+                <option>Perlu Tindakan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Cylinder Movement</td>
+            <td>
+              <select>
+                <option>OK</option>
+                <option>Perlu Tindakan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Control Panel</td>
+            <td>
+              <select>
+                <option>OK</option>
+                <option>Perlu Tindakan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Grease Point</td>
+            <td>
+              <select>
+                <option>OK</option>
+                <option>Perlu Tindakan</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Emergency Stop</td>
+            <td>
+              <select>
+                <option>OK</option>
+                <option>Perlu Tindakan</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <label>Upload Foto Mesin:
         <input type="file" accept="image/*" id="fotoMesin">
