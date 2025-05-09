@@ -11,23 +11,26 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #f4f6f8;
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
+      color: #fff;
     }
 
     .container {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
       max-width: 600px;
       width: 100%;
       margin: 40px auto;
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      color: #fff;
     }
 
     .logo {
@@ -43,29 +46,38 @@
     h2, h3 {
       margin-top: 0;
       font-weight: 600;
-      color: #333;
+      color: #fff;
       text-align: center;
     }
 
     label {
       display: block;
       margin-top: 15px;
-      color: #444;
+      color: #ddd;
+      font-weight: 500;
     }
 
     input, select {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-top: 6px;
-      border: 1px solid #ccc;
+      border: 2px solid #0072ff;
       border-radius: 8px;
       font-size: 14px;
-      background-color: #fdfdfd;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #00c6ff;
+      outline: none;
+      box-shadow: 0 0 8px rgba(0, 198, 255, 0.6);
     }
 
     button {
       width: 100%;
-      background: #007bff;
+      background: #0072ff;
       color: white;
       padding: 12px;
       margin-top: 20px;
@@ -74,11 +86,12 @@
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
 
     button:hover {
-      background: #0056b3;
+      background: #00c6ff;
+      transform: scale(1.05);
     }
 
     .hidden {
