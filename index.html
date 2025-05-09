@@ -1,153 +1,116 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>P2H Crimping Machine</title>
+  <meta charset="UTF-8">
+  <title>Form P2H Crimping Machine</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
-    h2 { color: #2c3e50; }
-    label { display: block; margin-top: 10px; }
-    input, select { padding: 5px; width: 100%; margin-top: 5px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-    th { background-color: #f0f0f0; }
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
     .hidden { display: none; }
+    label { display: block; margin-top: 10px; }
+    input, select, textarea { width: 100%; padding: 5px; margin-top: 5px; }
     button { margin-top: 15px; padding: 10px 20px; }
   </style>
 </head>
 <body>
 
-  <!-- Login Section -->
-  <div id="login-section">
-    <h2>Login Operator</h2>
-    <label>Nama Operator:
-      <input type="text" id="operator-name" placeholder="Masukkan nama Anda" required />
+  <h2>Login Operator</h2>
+  <div id="loginForm">
+    <label>Username:
+      <input type="text" id="username" required>
     </label>
     <label>Password:
-      <input type="password" id="operator-password" placeholder="Masukkan password" required />
+      <input type="password" id="password" required>
     </label>
     <button onclick="login()">Login</button>
   </div>
 
-  <!-- P2H Form Section -->
-  <div id="p2h-form-section" class="hidden">
-    <h2>Pengecekan & Pemeriksaan Harian Crimping Machine</h2>
-
-    <label>Tanggal Pengisian:
-      <input type="date" id="tanggal-pengisian" />
+  <div id="p2hForm" class="hidden">
+    <h2>Form P2H Crimping Machine</h2>
+    <label>Nama Operator:
+      <input type="text" id="operator">
+    </label>
+    <label>ID Mesin:
+      <input type="text" id="idMesin">
+    </label>
+    <label>Tanggal Pemeriksaan:
+      <input type="date" id="tanggal">
     </label>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Komponen</th>
-          <th>Pemeriksaan</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Power Supply</td>
-          <td>Kabel dan koneksi aman</td>
-          <td>
-            <select>
-              <option>OK</option>
-              <option>Perlu Tindakan</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Hydraulic Unit</td>
-          <td>Cek level oli, tidak bocor</td>
-          <td>
-            <select>
-              <option>OK</option>
-              <option>Perlu Tindakan</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Crimp Dies</td>
-          <td>Bersih, tidak aus/retak</td>
-          <td>
-            <select>
-              <option>OK</option>
-              <option>Perlu Tindakan</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Cylinder Movement</td>
-          <td>Lancar, tidak macet</td>
-          <td>
-            <select>
-              <option>OK</option>
-              <option>Perlu Tindakan</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Control Panel</td>
-          <td>Tombol berfungsi baik</td>
-          <td>
-            <select>
-              <option>OK</option>
-              <option>Perlu Tindakan</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Grease Point</td>
-          <td>Cukup pelumas</td>
-          <td>
-            <select>
-              <option>OK</option>
-              <option>Perlu Tindakan</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Emergency Stop</td>
-          <td>Berfungsi normal</td>
-          <td>
-            <select>
-              <option>OK</option>
-              <option>Perlu Tindakan</option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <label>Upload Foto Mesin:
+      <input type="file" accept="image/*" id="fotoMesin">
+    </label>
 
-    <button onclick="submitForm()">Kirim Pemeriksaan</button>
+    <h3>Checklist Harian</h3>
+
+    <label>Power Supply:
+      <select>
+        <option>OK</option>
+        <option>Perlu Tindakan</option>
+      </select>
+    </label>
+
+    <label>Hydraulic Unit:
+      <select>
+        <option>OK</option>
+        <option>Perlu Tindakan</option>
+      </select>
+    </label>
+
+    <label>Crimp Dies:
+      <select>
+        <option>OK</option>
+        <option>Perlu Tindakan</option>
+      </select>
+    </label>
+
+    <label>Cylinder Movement:
+      <select>
+        <option>OK</option>
+        <option>Perlu Tindakan</option>
+      </select>
+    </label>
+
+    <label>Control Panel:
+      <select>
+        <option>OK</option>
+        <option>Perlu Tindakan</option>
+      </select>
+    </label>
+
+    <label>Grease Point:
+      <select>
+        <option>OK</option>
+        <option>Perlu Tindakan</option>
+      </select>
+    </label>
+
+    <label>Emergency Stop:
+      <select>
+        <option>OK</option>
+        <option>Perlu Tindakan</option>
+      </select>
+    </label>
+
+    <button onclick="submitForm()">Submit</button>
   </div>
 
   <script>
     function login() {
-      const name = document.getElementById("operator-name").value.trim();
-      const pass = document.getElementById("operator-password").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-      // Sementara hanya validasi nama tidak kosong
-      if (name && pass) {
-        document.getElementById("login-section").classList.add("hidden");
-        document.getElementById("p2h-form-section").classList.remove("hidden");
+      // Simulasi login sederhana (gunakan autentikasi server di aplikasi nyata)
+      if (username === "operator" && password === "1234") {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("p2hForm").classList.remove("hidden");
       } else {
-        alert("Nama dan password harus diisi!");
+        alert("Username atau password salah!");
       }
     }
 
     function submitForm() {
-      const date = document.getElementById("tanggal-pengisian").value;
-      if (!date) {
-        alert("Tanggal pengisian wajib diisi.");
-        return;
-      }
-
-      alert("Form berhasil dikirim!\nTanggal: " + date);
-      // Di versi nyata, data akan dikirim ke server
+      alert("Form berhasil dikirim (simulasi).");
     }
   </script>
-
 </body>
 </html>
