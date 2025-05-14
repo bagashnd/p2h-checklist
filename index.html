@@ -277,23 +277,24 @@
         </div>
   </div>
 
-  <script>
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+<script>
+  function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-      if (username === "operator" && password === "1234") {
-        document.getElementById("loginForm").style.display = "none";
-        document.getElementById("p2hForm").classList.remove("hidden");
-      } else {
-        alert("Username atau password salah!");
-      }
-    
-
-    function submitForm() {
-      alert("Form berhasil dikirim (simulasi).");
+    if (username === "operator" && password === "1234") {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("p2hForm").classList.remove("hidden");
+    } else {
+      alert("Username atau password salah!");
     }
-  </script>
+  }
+
+  function submitForm() {
+    alert("Form berhasil dikirim (simulasi).");
+  }
+</script>
+
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
