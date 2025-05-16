@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Form P2H Crimping Machine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -17,7 +18,8 @@
       color: #333;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      padding: 20px;
       min-height: 100vh;
     }
 
@@ -25,7 +27,7 @@
       background-color: #fff;
       width: 100%;
       max-width: 800px;
-      padding: 40px 30px;
+      padding: 30px 20px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
@@ -33,36 +35,34 @@
     .logo {
       display: flex;
       justify-content: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .logo img {
-      height: 60px;
+      height: 50px;
     }
 
-    h2 {
+    h2, h3 {
       text-align: center;
       font-weight: 600;
-      margin-bottom: 20px;
-      color: #333;
+      margin: 20px 0 10px;
     }
 
     label {
-      display: block;
       font-size: 14px;
-      margin-bottom: 8px;
-      color: #666;
+      margin-bottom: 5px;
+      display: block;
+      color: #444;
     }
 
     input, select {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
+      padding: 10px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      background-color: #fafafa;
       font-size: 14px;
-      transition: border 0.3s ease;
+      background-color: #fafafa;
     }
 
     input:focus, select:focus {
@@ -71,7 +71,7 @@
     }
 
     button {
-      width: 80%;
+      width: 100%;
       padding: 12px;
       background-color: #0072ff;
       color: white;
@@ -80,7 +80,7 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: 600;
-      transition: background-color 0.3s ease;
+      margin-top: 10px;
     }
 
     button:hover {
@@ -91,55 +91,49 @@
       display: none;
     }
 
-    /* Tabel Modern */
+    /* Responsif tabel */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
     table {
       width: 100%;
-      margin-top: 20px;
       border-collapse: collapse;
-      margin-bottom: 30px;
+      min-width: 600px;
     }
 
     th, td {
-      padding: 12px;
-      text-align: left;
+      padding: 10px;
       border-bottom: 1px solid #ddd;
+      text-align: left;
     }
 
     th {
-      background-color: #f7f7f7;
-      font-weight: 600;
-      color: #333;
-    }
-
-    td select {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #fafafa;
-    }
-
-    tr:hover {
       background-color: #f1f1f1;
     }
 
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
     @media (max-width: 600px) {
-      .container {
-        padding: 20px;
+      h2, h3 {
+        font-size: 18px;
       }
 
-      table, th, td {
-        font-size: 12px;
-      }
-
-      button {
+      label, input, select, button {
         font-size: 14px;
       }
-  }
+
+      .container {
+        padding: 20px 15px;
+      }
+    }
   </style>
 </head>
 <body>
-
   <div class="container">
     <div class="logo">
       <img src="logo.png" alt="Logo Perusahaan">
@@ -159,183 +153,128 @@
     <div id="p2hForm" class="hidden">
       <h2>Form P2H Crimping Machine</h2>
       <label>Nama Pemeriksa:
-        <input type="text" id="operator">
+        <input type="text" id="namaOperator">
       </label>
       <label>ID Mesin:
         <input type="text" id="idMesin">
       </label>
-          <label>HM:
-      <input type="number" id="Hours Meter"placeholder="Isi HM Mesin Crimping">
-    </label>
-      <label>Tanggal Pemeriksaan:
-        <input type="date" id="tanggal">
+      <label>HM:
+        <input type="number" id="Hours Meter" placeholder="Isi HM Mesin Crimping">
       </label>
-      
-    <label>Jam Pengisian:
-      <input type="time" id="jamPengisian">
-    </label>
-      
-  <h3>Checklist Harian</h3>
+      <label>Tanggal Pemeriksaan:
+        <input type="date" id="tanggalPengisian">
+      </label>
+      <label>Jam Pengisian:
+        <input type="time" id="jamPengisian">
+      </label>
 
-<!-- Tabel Checklist -->
-<table>
-  <thead>
-    <tr>
-      <th>Komponen</th>
-      <th>Status</th>
-      <th>Remarks / Note</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Power Supply</td>
-      <td>
-        <select>
-          <option>Pilih</option>
-          <option>OK</option>
-          <option>Perlu Tindakan</option>
-        </select>
-      </td>
-      <td><input type="text" placeholder="Catatan"></td>
-    </tr>
-    <tr>
-      <td>Hydraulic Unit</td>
-      <td>
-        <select>
-          <option>Pilih</option>
-          <option>Baik</option>
-          <option>Tidak Baik</option>
-        </select>
-      </td>
-      <td><input type="text" placeholder="Catatan"></td>
-    </tr>
-    <tr>
-      <td>Crimp Dies</td>
-      <td>
-        <select>
-          <option>Pilih</option>
-          <option>Baik</option>
-          <option>Tidak Baik</option>
-        </select>
-      </td>
-      <td><input type="text" placeholder="Catatan"></td>
-    </tr>
-    <tr>
-      <td>Cylinder Movement</td>
-      <td>
-        <select>
-          <option>Pilih</option>
-          <option>Baik</option>
-          <option>Tidak Baik</option>
-        </select>
-      </td>
-      <td><input type="text" placeholder="Catatan"></td>
-    </tr>
-    <tr>
-      <td>Control Panel</td>
-      <td>
-        <select>
-          <option>Pilih</option>
-          <option>Baik</option>
-          <option>Tidak Baik</option>
-        </select>
-      </td>
-      <td><input type="text" placeholder="Catatan"></td>
-    </tr>
-    <tr>
-      <td>Grease Point</td>
-      <td>
-        <select>
-          <option>Pilih</option>
-          <option>Baik</option>
-          <option>Tidak Baik</option>
-        </select>
-      </td>
-      <td><input type="text" placeholder="Catatan"></td>
-    </tr>
-    <tr>
-      <td>Emergency Stop</td>
-      <td>
-        <select>
-          <option>Pilih</option>
-          <option>Baik</option>
-          <option>Tidak Baik</option>
-        </select>
-      </td>
-      <td><input type="text" placeholder="Catatan"></td>
-    </tr>
-  </tbody>
-</table>
-
+      <h3>Checklist Harian</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Komponen</th>
+              <th>Status</th>
+              <th>Catatan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Power Supply</td>
+              <td><select><option>Pilih</option><option>OK</option><option>Perlu Tindakan</option></select></td>
+              <td><input type="text" placeholder="Catatan"></td>
+            </tr>
+            <tr>
+              <td>Hydraulic Unit</td>
+              <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option></select></td>
+              <td><input type="text" placeholder="Catatan"></td>
+            </tr>
+            <tr>
+              <td>Crimp Dies</td>
+              <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option></select></td>
+              <td><input type="text" placeholder="Catatan"></td>
+            </tr>
+            <tr>
+              <td>Cylinder Movement</td>
+              <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option></select></td>
+              <td><input type="text" placeholder="Catatan"></td>
+            </tr>
+            <tr>
+              <td>Control Panel</td>
+              <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option></select></td>
+              <td><input type="text" placeholder="Catatan"></td>
+            </tr>
+            <tr>
+              <td>Grease Point</td>
+              <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option></select></td>
+              <td><input type="text" placeholder="Catatan"></td>
+            </tr>
+            <tr>
+              <td>Emergency Stop</td>
+              <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option></select></td>
+              <td><input type="text" placeholder="Catatan"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <label>Upload Foto Mesin:
         <input type="file" accept="image/*" id="fotoMesin">
       </label>
 
-      <button class="small" onclick="submitForm()">Submit</button>
-      
-      <button class="small" onclick="exportToExcel()">Export ke Excel</button>
-        </div>
+      <button onclick="submitForm()">Submit</button>
+      <button onclick="exportToExcel()">Export ke Excel</button>
+    </div>
   </div>
 
-<script>
-  function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-    if (username === "operator" && password === "1234") {
-      document.getElementById("loginForm").style.display = "none";
-      document.getElementById("p2hForm").classList.remove("hidden");
-     } else {
-      alert("Username atau password salah!");
+      if (username === "operator" && password === "1234") {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("p2hForm").classList.remove("hidden");
+      } else {
+        alert("Username atau password salah!");
+      }
     }
-  }
 
-  function submitForm() {
-    alert("Form berhasil dikirim (simulasi).");
-  }
-</script>
+    function submitForm() {
+      alert("Form berhasil dikirim (simulasi).");
+    }
+  </script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script>
+    function exportToExcel() {
+      const wb = XLSX.utils.book_new();
+      const ws_data = [];
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script>
-  function exportToExcel() {
-    const wb = XLSX.utils.book_new();
-    const ws_data = [];
+      const operator = document.getElementById("namaOperator")?.value || "";
+      const idMesin = document.getElementById("idMesin")?.value || "";
+      const tanggal = document.getElementById("tanggalPengisian")?.value || "";
+      const jam = document.getElementById("jamPengisian")?.value || "";
 
-    // Ambil data tambahan dari input form
-    const operator = document.getElementById("namaOperator")?.value || "";
-    const idMesin = document.getElementById("idMesin")?.value || "";
-    const tanggal = document.getElementById("tanggalPengisian")?.value || "";
-    const jam = document.getElementById("jamPengisian")?.value || "";
+      ws_data.push(["Nama Operator", operator]);
+      ws_data.push(["ID Mesin", idMesin]);
+      ws_data.push(["Tanggal Pengisian", tanggal]);
+      ws_data.push(["Jam Pengisian", jam]);
+      ws_data.push([]);
+      ws_data.push(["Komponen", "Status", "Remarks"]);
 
-    // Tambahkan info form ke baris atas file
-    ws_data.push(["Nama Operator", operator]);
-    ws_data.push(["ID Mesin", idMesin]);
-    ws_data.push(["Tanggal Pengisian", tanggal]);
-    ws_data.push(["Jam Pengisian", jam]);
-    ws_data.push([]); // baris kosong sebelum tabel
+      document.querySelectorAll("table tbody tr").forEach(row => {
+        const cells = row.querySelectorAll("td");
+        const komponen = cells[0].innerText;
+        const status = cells[1].querySelector("select")?.value || "";
+        const remarks = cells[2].querySelector("input")?.value || "";
+        ws_data.push([komponen, status, remarks]);
+      });
 
-    // Header tabel
-    ws_data.push(["Komponen", "Status", "Remarks"]);
-
-    // Ambil data checklist dari tabel
-    document.querySelectorAll("table tbody tr").forEach(row => {
-      const cells = row.querySelectorAll("td");
-      const komponen = cells[0].innerText;
-      const status = cells[1].querySelector("select")?.value || "";
-      const remarks = cells[2].querySelector("input")?.value || "";
-      ws_data.push([komponen, status, remarks]);
-    });
-
-    // Buat worksheet & simpan
-    const ws = XLSX.utils.aoa_to_sheet(ws_data);
-    XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-    XLSX.writeFile(wb, "P2H-Crimping.xlsx");
-  }
-</script>
-
-
-  
+      const ws = XLSX.utils.aoa_to_sheet(ws_data);
+      XLSX.utils.book_append_sheet(wb, ws, "Checklist");
+      XLSX.writeFile(wb, "P2H-Crimping.xlsx");
+    }
+  </script>
 </body>
 </html>
