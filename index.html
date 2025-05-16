@@ -139,15 +139,15 @@
       <img src="logo.png" alt="Logo Perusahaan">
     </div>
 
-    <div id="loginForm">
-      <label>Username:
-        <input type="text" id="username" required>
-      </label>
-      <label>Password:
-        <input type="password" id="password" required>
-      </label>
-      <button onclick="login()">Login</button>
-    </div>
+   <form id="loginForm" onsubmit="login(event)">
+  <label>Username:
+    <input type="text" id="username" required>
+  </label>
+  <label>Password:
+    <input type="password" id="password" required>
+  </label>
+  <button type="submit">Login</button>
+</form>
 
     <div id="p2hForm" class="hidden">
       <h2>Form P2H Crimping Machine</h2>
