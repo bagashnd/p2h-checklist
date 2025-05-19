@@ -126,6 +126,11 @@
       <label for="idMesin">ID Mesin:
         <input type="text" id="idMesin" required>
       </label>
+      <label for="Lokasi">Site/Lokasi:
+        <input type="text" id="Lokasi" required>
+        <label>Lokasi Saat Ini:
+      <input type="text" id="lokasi" readonly placeholder="Menentukan lokasi...">  
+      </label>
       <label for="hm">HM (Hours Meter):
         <input type="number" id="hm" placeholder="Isi HM Mesin Crimping" required>
       </label>
@@ -156,7 +161,7 @@
         </tbody>
       </table>
 
-      <label for="fotoMesin">Upload Foto Mesin (langsung kamera):
+      <label for="fotoMesin">Upload Foto Mesin:
         <input type="file" id="fotoMesin" accept="image/*" capture="environment" multiple>
       </label>
 
@@ -236,5 +241,21 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script> 
+  window.onload = function () {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const lat = position.coords.latitude.toFixed(6);
+        const lon = position.coords.longitude.toFixed(6);
+        document.getElementById("lokasi").value = `${lat}, ${lon}`;
+      }, function (error) {
+        document.getElementById("lokasi").value = "Gagal mendapatkan lokasi.";
+      });
+    } else {
+      document.getElementById("lokasi").value = "Geolocation tidak didukung.";
+    }
+  };
+</script>
+
 </body>
 </html>
