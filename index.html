@@ -2,7 +2,6 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form P2H Crimping Machine</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -11,6 +10,7 @@
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #f7f7f7;
@@ -19,44 +19,50 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 10px;
     }
+
     .container {
       background-color: #fff;
       width: 100%;
       max-width: 800px;
-      padding: 30px 20px;
+      padding: 30px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
+
     .logo {
       display: flex;
       justify-content: center;
       margin-bottom: 20px;
     }
+
     .logo img {
       height: 60px;
     }
-    h2, h3 {
+
+    h2 {
       text-align: center;
       font-weight: 600;
       margin-bottom: 20px;
+      color: #333;
     }
+
     label {
       display: block;
       font-size: 14px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: #666;
     }
+
     input, select {
       width: 100%;
       padding: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      background-color: #fafafa;
       font-size: 14px;
     }
+
     button {
       width: 100%;
       padding: 12px;
@@ -69,192 +75,206 @@
       font-weight: 600;
       margin-top: 10px;
     }
+
     button:hover {
       background-color: #005bb5;
     }
+
     .hidden {
       display: none;
     }
+
     table {
       width: 100%;
-      margin-top: 10px;
+      margin-top: 20px;
       border-collapse: collapse;
     }
+
     th, td {
-      padding: 10px;
+      padding: 12px;
       border-bottom: 1px solid #ddd;
+      text-align: left;
     }
+
     th {
-      background-color: #f7f7f7;
+      background-color: #f0f0f0;
     }
+
     @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
       input, select, button {
         font-size: 14px;
-      }
-      th, td {
-        font-size: 13px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <img src="logo.png" alt="Logo Perusahaan">
-    </div>
 
-    
-<div id="loginForm">
-  <h2>Login Operator</h2>
-  <form onsubmit="login(event)">
-    <label for="username">Username:
-      <input type="text" id="username" required>
-    </label>
-    <label for="password">Password:
-      <input type="password" id="password" required>
-    </label>
-    <button type="submit">Login</button>
-  </form>
-</div>
-
-
-    <div id="p2hForm" class="hidden">
-      <h2>Form P2H Crimping Machine</h2>
-      <label for="operator">Nama Pemeriksa:
-        <input type="text" id="operator" required>
-      </label>
-      <label for="idMesin">ID Mesin:
-        <input type="text" id="idMesin" required>
-      </label>
-      <label for="Lokasi">Site/Lokasi:
-        <input type="text" id="Lokasi" required>
-      <label for="hm">HM (Hours Meter):
-        <input type="number" id="hm" placeholder="Isi HM Mesin Crimping" required>
-      </label>
-      <label for="tanggal">Tanggal Pemeriksaan:
-        <input type="date" id="tanggal" required>
-      </label>
-      <label for="jamPengisian">Jam Pengisian:
-        <input type="time" id="jamPengisian" required>
-      </label>
-
-      <h3>Checklist Harian</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Komponen</th>
-            <th>Status</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Power Supply</td><td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td><td><input type="text"></td></tr>
-          <tr><td>Hydraulic Unit</td><td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td><td><input type="text"></td></tr>
-          <tr><td>Crimp Dies</td><td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td><td><input type="text"></td></tr>
-          <tr><td>Cylinder Movement</td><td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td><td><input type="text"></td></tr>
-          <tr><td>Control Panel</td><td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td><td><input type="text"></td></tr>
-          <tr><td>Grease Point</td><td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td><td><input type="text"></td></tr>
-          <tr><td>Emergency Stop</td><td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td><td><input type="text"></td></tr>
-        </tbody>
-      </table>
-
-      <label for="fotoMesin">Upload Foto Mesin:
-        <input type="file" id="fotoMesin" accept="image/*" capture="environment" multiple>
-      </label>
-
-      <button onclick="submitForm()">Submit</button>
-      <button onclick="exportToExcel()">Export ke Excel</button>
-    </div>
+<div class="container">
+  <div class="logo">
+    <img src="logo.png" alt="Logo Perusahaan">
   </div>
 
-  <script>
-    function login(event) {
-      event.preventDefault();
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+  <div id="loginForm">
+    <h2>Login Operator</h2>
+    <form onsubmit="login(event)">
+      <label>Username:
+        <input type="text" id="username" required>
+      </label>
+      <label>Password:
+        <input type="password" id="password" required>
+      </label>
+      <button type="submit">Login</button>
+    </form>
+  </div>
 
-      if (username === "operator" && password === "1234") {
-        document.getElementById("loginForm").style.display = "none";
-        document.getElementById("p2hForm").classList.remove("hidden");
-      } else {
-        alert("Username atau password salah!");
-      }
+  <div id="p2hForm" class="hidden">
+    <label>Nama Pemeriksa:
+      <input type="text" id="namaOperator">
+    </label>
+    <label>ID Mesin:
+      <input type="text" id="idMesin">
+    </label>
+    <label>HM (Hours Meter):
+      <input type="number" id="hmMesin" placeholder="Isi HM Mesin Crimping">
+    </label>
+    <label>Tanggal Pemeriksaan:
+      <input type="date" id="tanggal">
+    </label>
+    <label>Jam Pengisian:
+      <input type="time" id="jamPengisian">
+    </label>
+    <label>Lokasi Pemeriksaan:
+      <input type="text" id="lokasi" placeholder="Sedang mendeteksi lokasi...">
+    </label>
+
+    <h3>Checklist Harian</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Komponen</th>
+          <th>Status</th>
+          <th>Catatan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Power Supply</td>
+          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>Hydraulic Unit</td>
+          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>Crimp Dies</td>
+          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>Cylinder Movement</td>
+          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>Control Panel</td>
+          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>Grease Point</td>
+          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td>Emergency Stop</td>
+          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+          <td><input type="text"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <label>Upload Foto Mesin:
+      <input type="file" id="fotoMesin" accept="image/*" capture="environment">
+    </label>
+
+    <button onclick="submitForm()">Submit</button>
+    <button onclick="exportToExcel()">Export ke Excel</button>
+  </div>
+</div>
+
+<script>
+  // Login dengan tombol Enter
+  function login(event) {
+    event.preventDefault();
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    if (user === "operator" && pass === "1234") {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("p2hForm").classList.remove("hidden");
+    } else {
+      alert("Username atau password salah.");
     }
+  }
 
-    function submitForm() {
-      const operator = document.getElementById("operator").value;
-      const idMesin = document.getElementById("idMesin").value;
-      const Lokasi = document.getElementById("Lokasi").value;
-      const hm = document.getElementById("hm").value;
-      const tanggal = document.getElementById("tanggal").value;
-      const jam = document.getElementById("jamPengisian").value;
+  function submitForm() {
+    alert("Form berhasil dikirim (simulasi).");
+  }
 
-      if (!operator || !idMesin || !Lokasi || || !hm || !tanggal || !jam) {
-        alert("Mohon lengkapi semua data.");
-        return;
-      }
-
-      // Validasi semua status checklist dipilih
-      const selects = document.querySelectorAll("table tbody select");
-      for (let s of selects) {
-        if (s.value === "Pilih") {
-          alert("Semua checklist harus diisi.");
-          return;
-        }
-      }
-
-      alert("Form berhasil dikirim. (simulasi)");
-    }
-
-    function exportToExcel() {
-      const wb = XLSX.utils.book_new();
-      const ws_data = [];
-
-      const operator = document.getElementById("operator").value;
-      const idMesin = document.getElementById("idMesin").value;
-      const Lokasi = document.getElementById("Lokasi").value;
-      const hm = document.getElementById("hm").value;
-      const tanggal = document.getElementById("tanggal").value;
-      const jam = document.getElementById("jamPengisian").value;
-
-      ws_data.push(["Nama Operator", operator]);
-      ws_data.push(["ID Mesin", idMesin]);
-      ws_data.push(["Lokasi", Lokasi]);
-      ws_data.push(["HM", hm]);
-      ws_data.push(["Tanggal", tanggal]);
-      ws_data.push(["Jam", jam]);
-      ws_data.push([]);
-      ws_data.push(["Komponen", "Status", "Remarks"]);
-
-      document.querySelectorAll("table tbody tr").forEach(row => {
-        const cells = row.querySelectorAll("td");
-        const komponen = cells[0].innerText;
-        const status = cells[1].querySelector("select").value;
-        const remarks = cells[2].querySelector("input").value;
-        ws_data.push([komponen, status, remarks]);
-      });
-
-      const ws = XLSX.utils.aoa_to_sheet(ws_data);
-      XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-      XLSX.writeFile(wb, "P2H-Crimping.xlsx");
-    }
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  <script> 
+  // Isi lokasi otomatis
   window.onload = function () {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const lat = position.coords.latitude.toFixed(6);
-        const lon = position.coords.longitude.toFixed(6);
-        document.getElementById("lokasi").value = `${lat}, ${lon}`;
-      }, function (error) {
-        document.getElementById("Lokasi").value = "Gagal mendapatkan lokasi.";
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        const lat = pos.coords.latitude.toFixed(5);
+        const lon = pos.coords.longitude.toFixed(5);
+        document.getElementById('lokasi').value = `${lat}, ${lon}`;
+      }, function () {
+        document.getElementById('lokasi').placeholder = "Lokasi tidak ditemukan";
       });
-    } else {
-      document.getElementById("Lokasi").value = "Geolocation tidak didukung.";
     }
   };
+</script>
+
+<!-- Export ke Excel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+  function exportToExcel() {
+    const wb = XLSX.utils.book_new();
+    const ws_data = [];
+
+    const nama = document.getElementById("namaOperator").value;
+    const idMesin = document.getElementById("idMesin").value;
+    const hm = document.getElementById("hmMesin").value;
+    const tanggal = document.getElementById("tanggal").value;
+    const jam = document.getElementById("jamPengisian").value;
+    const lokasi = document.getElementById("lokasi").value;
+
+    ws_data.push(["Nama Operator", nama]);
+    ws_data.push(["ID Mesin", idMesin]);
+    ws_data.push(["HM", hm]);
+    ws_data.push(["Tanggal", tanggal]);
+    ws_data.push(["Jam", jam]);
+    ws_data.push(["Lokasi", lokasi]);
+    ws_data.push([]);
+
+    ws_data.push(["Komponen", "Status", "Catatan"]);
+
+    document.querySelectorAll("table tbody tr").forEach(row => {
+      const komponen = row.cells[0].innerText;
+      const status = row.cells[1].querySelector("select").value;
+      const catatan = row.cells[2].querySelector("input").value;
+      ws_data.push([komponen, status, catatan]);
+    });
+
+    const ws = XLSX.utils.aoa_to_sheet(ws_data);
+    XLSX.utils.book_append_sheet(wb, ws, "Checklist");
+    XLSX.writeFile(wb, `P2H-Crimping-${tanggal}.xlsx`);
+  }
 </script>
 
 </body>
