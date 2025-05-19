@@ -128,9 +128,6 @@
       </label>
       <label for="Lokasi">Site/Lokasi:
         <input type="text" id="Lokasi" required>
-        <label>Lokasi Saat Ini:
-      <input type="text" id="lokasi" readonly placeholder="Menentukan lokasi...">  
-      </label>
       <label for="hm">HM (Hours Meter):
         <input type="number" id="hm" placeholder="Isi HM Mesin Crimping" required>
       </label>
@@ -187,11 +184,12 @@
     function submitForm() {
       const operator = document.getElementById("operator").value;
       const idMesin = document.getElementById("idMesin").value;
+      const Lokasi = document.getElementById("Lokasi").value;
       const hm = document.getElementById("hm").value;
       const tanggal = document.getElementById("tanggal").value;
       const jam = document.getElementById("jamPengisian").value;
 
-      if (!operator || !idMesin || !hm || !tanggal || !jam) {
+      if (!operator || !idMesin || !Lokasi || || !hm || !tanggal || !jam) {
         alert("Mohon lengkapi semua data.");
         return;
       }
@@ -214,12 +212,14 @@
 
       const operator = document.getElementById("operator").value;
       const idMesin = document.getElementById("idMesin").value;
+      const Lokasi = document.getElementById("Lokasi").value;
       const hm = document.getElementById("hm").value;
       const tanggal = document.getElementById("tanggal").value;
       const jam = document.getElementById("jamPengisian").value;
 
       ws_data.push(["Nama Operator", operator]);
       ws_data.push(["ID Mesin", idMesin]);
+      ws_data.push(["Lokasi", Lokasi]);
       ws_data.push(["HM", hm]);
       ws_data.push(["Tanggal", tanggal]);
       ws_data.push(["Jam", jam]);
@@ -249,10 +249,10 @@
         const lon = position.coords.longitude.toFixed(6);
         document.getElementById("lokasi").value = `${lat}, ${lon}`;
       }, function (error) {
-        document.getElementById("lokasi").value = "Gagal mendapatkan lokasi.";
+        document.getElementById("Lokasi").value = "Gagal mendapatkan lokasi.";
       });
     } else {
-      document.getElementById("lokasi").value = "Geolocation tidak didukung.";
+      document.getElementById("Lokasi").value = "Geolocation tidak didukung.";
     }
   };
 </script>
