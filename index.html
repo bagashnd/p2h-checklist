@@ -11,7 +11,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 40px;
+      min-height: 100vh;
+      padding: 20px;
     }
     .container {
       background: #fff;
@@ -52,55 +53,87 @@
     button:hover {
       background: #005bb5;
     }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>Form Pemeriksaan Harian Crimping Machine</h2>
 
-  <form action="https://formspree.io/f/xwpojvnj" method="POST" id="p2hForm">
-    <label>Nama Operator:
-      <input type="text" name="namaOperator" required>
+  <!-- Halaman Login -->
+  <div id="loginForm">
+    <h2>Login Operator</h2>
+    <label>Username:
+      <input type="text" id="username" required>
     </label>
-
-    <label>ID Mesin:
-      <input type="text" name="idMesin" required>
+    <label>Password:
+      <input type="password" id="password" required>
     </label>
+    <button onclick="handleLogin()">Login</button>
+  </div>
 
-    <label>HM (Hours Meter):
-      <input type="number" name="hmMesin" required>
-    </label>
+  <!-- Halaman Form -->
+  <div id="p2hForm" class="hidden">
+    <h2>Form P2H Crimping Machine</h2>
+    <form action="https://formspree.io/f/mayvlvkn" method="POST" id="formP2H">
+      <label>Nama Operator:
+        <input type="text" name="namaOperator" required>
+      </label>
 
-    <label>Tanggal Pemeriksaan:
-      <input type="date" name="tanggal" required>
-    </label>
+      <label>ID Mesin:
+        <input type="text" name="idMesin" required>
+      </label>
 
-    <label>Jam Pengisian:
-      <input type="time" name="jamPengisian" required>
-    </label>
+      <label>HM (Hours Meter):
+        <input type="number" name="hmMesin" required>
+      </label>
 
-    <label>Lokasi Pemeriksaan:
-      <input type="text" id="lokasi" name="lokasi" placeholder="Mendeteksi lokasi..." required>
-    </label>
+      <label>Tanggal Pemeriksaan:
+        <input type="date" name="tanggal" required>
+      </label>
 
-    <label>Checklist Harian (Ringkas):
-      <textarea name="checklistRingkas" rows="6" placeholder="Contoh:
+      <label>Jam Pengisian:
+        <input type="time" name="jamPengisian" required>
+      </label>
+
+      <label>Lokasi Pemeriksaan:
+        <input type="text" id="lokasi" name="lokasi" placeholder="Mendeteksi lokasi..." required>
+      </label>
+
+      <label>Checklist Harian (Ringkas):
+        <textarea name="checklistRingkas" rows="6" placeholder="Contoh:
 - Power Supply: Baik
 - Hydraulic Unit: Baik
-- Crimp Dies: Tidak Baik, perlu dicek ulang
+- Crimp Dies: Tidak Baik
 - Emergency Stop: Baik"></textarea>
-    </label>
+      </label>
 
-    <label>Catatan Tambahan:
-      <textarea name="catatanTambahan" rows="3"></textarea>
-    </label>
+      <label>Catatan Tambahan:
+        <textarea name="catatanTambahan" rows="3"></textarea>
+      </label>
 
-    <button type="submit">Kirim Form ke Email</button>
-  </form>
+      <button type="submit">Kirim Form ke Email</button>
+    </form>
+  </div>
+
 </div>
 
 <script>
+  // Login sederhana
+  function handleLogin() {
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
+
+    if (user === 'operator' && pass === '1234') {
+      document.getElementById('loginForm').classList.add('hidden');
+      document.getElementById('p2hForm').classList.remove('hidden');
+    } else {
+      alert('Username atau password salah!');
+    }
+  }
+
   // Isi lokasi otomatis
   window.onload = function () {
     const lokasiInput = document.getElementById('lokasi');
@@ -112,16 +145,15 @@
       }, function () {
         lokasiInput.placeholder = "Lokasi tidak ditemukan";
       });
-    } else {
-      lokasiInput.placeholder = "Geolocation tidak didukung browser ini";
     }
   };
 
-  // Feedback setelah kirim form
-  document.getElementById('p2hForm').addEventListener("submit", function (e) {
+  // Form submit dengan AJAX (tanpa reload)
+  document.getElementById('formP2H').addEventListener('submit', function (e) {
     e.preventDefault();
     const form = e.target;
     const data = new FormData(form);
+
     fetch(form.action, {
       method: form.method,
       body: data,
