@@ -5,11 +5,7 @@
   <title>Form P2H Crimping Machine</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -101,13 +97,8 @@
     }
 
     @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-
-      input, select, button {
-        font-size: 14px;
-      }
+      .container { padding: 20px; }
+      input, select, button { font-size: 14px; }
     }
   </style>
 </head>
@@ -209,7 +200,6 @@
 </div>
 
 <script>
-  // Login dengan tombol Enter
   function login(event) {
     event.preventDefault();
     const user = document.getElementById("username").value;
@@ -226,13 +216,13 @@
     alert("Form berhasil dikirim (simulasi).");
   }
 
-  // Isi lokasi otomatis
+  // Deteksi Lokasi Otomatis
   window.onload = function () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (pos) {
         const lat = pos.coords.latitude.toFixed(5);
         const lon = pos.coords.longitude.toFixed(5);
-        document.getElementById('lokasi').value = ${lat}, ${lon};
+        document.getElementById('lokasi').value = `${lat}, ${lon}`;
       }, function () {
         document.getElementById('lokasi').placeholder = "Lokasi tidak ditemukan";
       });
@@ -273,7 +263,7 @@
 
     const ws = XLSX.utils.aoa_to_sheet(ws_data);
     XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-    XLSX.writeFile(wb, P2H-Crimping-${tanggal}.xlsx);
+    XLSX.writeFile(wb, `P2H-Crimping-${tanggal}.xlsx`);
   }
 </script>
 
