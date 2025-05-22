@@ -5,276 +5,138 @@
   <title>Form P2H Crimping Machine</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
       font-family: 'Inter', sans-serif;
       background-color: #f7f7f7;
-      color: #333;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      padding: 40px;
     }
-
     .container {
-      background-color: #fff;
-      width: 100%;
-      max-width: 800px;
+      background: #fff;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      width: 100%;
     }
-
-    .logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-
-    h2 {
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
     label {
       display: block;
-      font-size: 14px;
-      margin-bottom: 10px;
-      color: #666;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #333;
     }
-
-    input, select {
+    input, select, textarea {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
+      margin-top: 5px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
       font-size: 14px;
     }
-
+    textarea {
+      resize: vertical;
+    }
     button {
-      width: 100%;
-      padding: 12px;
-      background-color: #0072ff;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background-color: #005bb5;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    table {
-      width: 100%;
       margin-top: 20px;
-      border-collapse: collapse;
-    }
-
-    th, td {
       padding: 12px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
+      width: 100%;
+      background: #0072ff;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
-
-    th {
-      background-color: #f0f0f0;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-
-      input, select, button {
-        font-size: 14px;
-      }
+    button:hover {
+      background: #005bb5;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <div class="logo">
-    <img src="logo.png" alt="Logo Perusahaan">
-  </div>
+  <h2>Form Pemeriksaan Harian Crimping Machine</h2>
 
-  <div id="loginForm">
-    <h2>Login Operator</h2>
-    <form onsubmit="login(event)">
-      <label>Username:
-        <input type="text" id="username" required>
-      </label>
-      <label>Password:
-        <input type="password" id="password" required>
-      </label>
-      <button type="submit">Login</button>
-    </form>
-  </div>
-
-  <div id="p2hForm" class="hidden">
-    <label>Nama Pemeriksa:
-      <input type="text" id="namaOperator">
+  <form action="https://formspree.io/f/xwpojvnj" method="POST" id="p2hForm">
+    <label>Nama Operator:
+      <input type="text" name="namaOperator" required>
     </label>
+
     <label>ID Mesin:
-      <input type="text" id="idMesin">
+      <input type="text" name="idMesin" required>
     </label>
+
     <label>HM (Hours Meter):
-      <input type="number" id="hmMesin" placeholder="Isi HM Mesin Crimping">
+      <input type="number" name="hmMesin" required>
     </label>
+
     <label>Tanggal Pemeriksaan:
-      <input type="date" id="tanggal">
+      <input type="date" name="tanggal" required>
     </label>
+
     <label>Jam Pengisian:
-      <input type="time" id="jamPengisian">
+      <input type="time" name="jamPengisian" required>
     </label>
+
     <label>Lokasi Pemeriksaan:
-      <input type="text" id="lokasi" placeholder="Sedang mendeteksi lokasi...">
+      <input type="text" id="lokasi" name="lokasi" placeholder="Mendeteksi lokasi..." required>
     </label>
 
-    <h3>Checklist Harian</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Komponen</th>
-          <th>Status</th>
-          <th>Catatan</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Power Supply</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Hydraulic Unit</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Crimp Dies</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Cylinder Movement</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Control Panel</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Grease Point</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Emergency Stop</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <label>Upload Foto Mesin:
-      <input type="file" id="fotoMesin" accept="image/*" capture="environment">
+    <label>Checklist Harian (Ringkas):
+      <textarea name="checklistRingkas" rows="6" placeholder="Contoh:
+- Power Supply: Baik
+- Hydraulic Unit: Baik
+- Crimp Dies: Tidak Baik, perlu dicek ulang
+- Emergency Stop: Baik"></textarea>
     </label>
 
-    <button onclick="submitForm()">Submit</button>
-    <button onclick="exportToExcel()">Export ke Excel</button>
-  </div>
+    <label>Catatan Tambahan:
+      <textarea name="catatanTambahan" rows="3"></textarea>
+    </label>
+
+    <button type="submit">Kirim Form ke Email</button>
+  </form>
 </div>
 
 <script>
-  // Login dengan tombol Enter
-  function login(event) {
-    event.preventDefault();
-    const user = document.getElementById("username").value;
-    const pass = document.getElementById("password").value;
-    if (user === "operator" && pass === "1234") {
-      document.getElementById("loginForm").style.display = "none";
-      document.getElementById("p2hForm").classList.remove("hidden");
-    } else {
-      alert("Username atau password salah.");
-    }
-  }
-
-  function submitForm() {
-    alert("Form berhasil dikirim (simulasi).");
-  }
-
   // Isi lokasi otomatis
   window.onload = function () {
+    const lokasiInput = document.getElementById('lokasi');
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        const lat = pos.coords.latitude.toFixed(5);
-        const lon = pos.coords.longitude.toFixed(5);
-        document.getElementById('lokasi').value = `${lat}, ${lon}`;
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const lat = position.coords.latitude.toFixed(5);
+        const lon = position.coords.longitude.toFixed(5);
+        lokasiInput.value = `${lat}, ${lon}`;
       }, function () {
-        document.getElementById('lokasi').placeholder = "Lokasi tidak ditemukan";
+        lokasiInput.placeholder = "Lokasi tidak ditemukan";
       });
+    } else {
+      lokasiInput.placeholder = "Geolocation tidak didukung browser ini";
     }
   };
-</script>
 
-<!-- Export ke Excel -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script>
-  function exportToExcel() {
-    const wb = XLSX.utils.book_new();
-    const ws_data = [];
-
-    const nama = document.getElementById("namaOperator").value;
-    const idMesin = document.getElementById("idMesin").value;
-    const hm = document.getElementById("hmMesin").value;
-    const tanggal = document.getElementById("tanggal").value;
-    const jam = document.getElementById("jamPengisian").value;
-    const lokasi = document.getElementById("lokasi").value;
-
-    ws_data.push(["Nama Operator", nama]);
-    ws_data.push(["ID Mesin", idMesin]);
-    ws_data.push(["HM", hm]);
-    ws_data.push(["Tanggal", tanggal]);
-    ws_data.push(["Jam", jam]);
-    ws_data.push(["Lokasi", lokasi]);
-    ws_data.push([]);
-
-    ws_data.push(["Komponen", "Status", "Catatan"]);
-
-    document.querySelectorAll("table tbody tr").forEach(row => {
-      const komponen = row.cells[0].innerText;
-      const status = row.cells[1].querySelector("select").value;
-      const catatan = row.cells[2].querySelector("input").value;
-      ws_data.push([komponen, status, catatan]);
+  // Feedback setelah kirim form
+  document.getElementById('p2hForm').addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        alert("Form berhasil dikirim ke email!");
+        form.reset();
+      } else {
+        alert("Gagal mengirim form.");
+      }
+    }).catch(() => {
+      alert("Terjadi kesalahan saat mengirim.");
     });
-
-    const ws = XLSX.utils.aoa_to_sheet(ws_data);
-    XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-    XLSX.writeFile(wb, `P2H-Crimping-${tanggal}.xlsx`);
-  }
+  });
 </script>
 
 </body>
