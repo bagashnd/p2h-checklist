@@ -5,7 +5,11 @@
   <title>Form P2H Crimping Machine</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -36,7 +40,7 @@
       height: 60px;
     }
 
-    h2 {
+    h2, h3 {
       text-align: center;
       font-weight: 600;
       margin-bottom: 20px;
@@ -82,8 +86,8 @@
 
     table {
       width: 100%;
-      margin-top: 20px;
       border-collapse: collapse;
+      margin-top: 10px;
     }
 
     th, td {
@@ -94,6 +98,10 @@
 
     th {
       background-color: #f0f0f0;
+    }
+
+    .section {
+      margin-top: 30px;
     }
 
     @media (max-width: 600px) {
@@ -109,6 +117,7 @@
     <img src="logo.png" alt="Logo Perusahaan">
   </div>
 
+  <!-- Login Form -->
   <div id="loginForm">
     <h2>Login Operator</h2>
     <form onsubmit="login(event)">
@@ -122,6 +131,7 @@
     </form>
   </div>
 
+  <!-- Form P2H -->
   <div id="p2hForm" class="hidden">
     <label>Nama Pemeriksa:
       <input type="text" id="namaOperator">
@@ -138,119 +148,105 @@
     <label>Jam Pengisian:
       <input type="time" id="jamPengisian">
     </label>
-    <label>HM (Hours Meter):
-      <input type="number" id="hmMesin" placeholder="Isi HM Mesin Crimping">
-    </label>
     <label>Lokasi Pemeriksaan:
       <input type="text" id="lokasi" placeholder="Sedang mendeteksi lokasi...">
     </label>
 
-    <h3>Checklist Harian</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Komponen</th>
-          <th>Status</th>
-          <th>Catatan</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Power Supply</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Hydraulic Unit</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Crimp Dies</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Cylinder Movement</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Control Panel</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Grease Point</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Emergency Stop</td>
-          <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-          <td><input type="text"></td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Checklist Harian -->
+    <div class="section">
+      <h3>Checklist Harian</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Komponen</th>
+            <th>Status</th>
+            <th>Catatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Power Supply</td>
+            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+          <tr>
+            <td>Hydraulic Unit</td>
+            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+          <tr>
+            <td>Crimp Dies</td>
+            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+          <tr>
+            <td>Cylinder Movement</td>
+            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+          <tr>
+            <td>Control Panel</td>
+            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+          <tr>
+            <td>Grease Point</td>
+            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+          <tr>
+            <td>Emergency Stop</td>
+            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <!-- Checklist Mingguan -->
+    <div class="section">
+      <h3>Pemeriksaan Mingguan</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Item Pemeriksaan</th>
+            <th>Status</th>
+            <th>Catatan</th>
+          </tr>
+        </thead>
+        <tbody id="mingguanChecklist">
+          <tr>
+            <td>Bersihkan die cage dengan kuas</td>
+            <td><select><option>Pilih</option><option>Selesai</option><option>Belum</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+          <tr>
+            <td>Greasing piston cone & shoe cluster</td>
+            <td><select><option>Pilih</option><option>Selesai</option><option>Belum</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+          <tr>
+            <td>Kalibrasi ukuran crimp (opsional)</td>
+            <td><select><option>Pilih</option><option>Selesai</option><option>Tidak Diperlukan</option></select></td>
+            <td><input type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <h3>Pemeriksaan Mingguan</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Item Pemeriksaan</th>
-          <th>Status</th>
-          <th>Catatan</th>
-        </tr>
-      </thead>
-      <tbody id="mingguanChecklist">
-        <tr>
-          <td>Bersihkan die cage dengan kuas</td>
-          <td>
-            <select>
-              <option>Pilih</option>
-              <option>Selesai</option>
-              <option>Belum</option>
-            </select>
-          </td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Greasing piston cone & shoe cluster</td>
-          <td>
-            <select>
-              <option>Pilih</option>
-              <option>Selesai</option>
-              <option>Belum</option>
-            </select>
-          </td>
-          <td><input type="text"></td>
-        </tr>
-        <tr>
-          <td>Kalibrasi ukuran crimp (opsional)</td>
-          <td>
-            <select>
-              <option>Pilih</option>
-              <option>Selesai</option>
-              <option>Tidak Diperlukan</option>
-            </select>
-          </td>
-          <td><input type="text"></td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Upload dan Tombol -->
+    <div class="section">
+      <label>Upload Foto Mesin:
+        <input type="file" id="fotoMesin" accept="image/*" capture="environment">
+      </label>
 
-
-    <label>
-      Upload Foto Mesin:
-      <input type="file" id="fotoMesin" accept="image/*" capture="environment">
-    </label>
-
-    <button onclick="submitForm()">Submit</button>
-    <button onclick="exportToExcel()">Export ke Excel</button>
+      <button onclick="submitForm()">Submit</button>
+      <button onclick="exportToExcel()">Export ke Excel</button>
+    </div>
   </div>
 </div>
 
+<!-- Script Login -->
 <script>
   function login(event) {
     event.preventDefault();
@@ -268,7 +264,6 @@
     alert("Form berhasil dikirim (simulasi).");
   }
 
-  // Deteksi Lokasi Otomatis
   window.onload = function () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (pos) {
@@ -282,7 +277,7 @@
   };
 </script>
 
-<!-- Export ke Excel -->
+<!-- Script Export Excel -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
   function exportToExcel() {
