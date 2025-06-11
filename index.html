@@ -9,12 +9,10 @@
     const checklistItems = [
   { section: "A. PANEL", items: [
     "Display",
-    { label: "Switch Panel", subitems: [
-      "Switch ON/OFF",
-      "Switch Adjuster",
-      "Panel Release",
-      "Panel Crimp"
-    ] },
+    "Switch ON/OFF",
+    "Switch Adjuster",
+    "Panel Release",
+    "Panel Crimp",
     "Cover"
   ]},
   { section: "B. TOOLS", items: [
@@ -41,26 +39,49 @@
     function generateChecklist() {
       const container = document.getElementById('checklistContainer');
       checklistItems.forEach(group => {
-  group.items.forEach(item => {
-    if (typeof item === 'string') {
-      const radios = form.querySelectorAll(`input[name='${item}']`);
-      const selected = [...radios].find(r => r.checked)?.value || "";
-      const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
-      data.push([item, selected, remark]);
-    } else if (typeof item === 'object' && item.subitems) {
-      item.subitems.forEach(sub => {
-        const radios = form.querySelectorAll(`input[name='${sub}']`);
-        const selected = [...radios].find(r => r.checked)?.value || "";
-        const remark = form.querySelector(`input[name='${sub}_remark']`)?.value || "";
-        data.push([sub, selected, remark]);
+        const section = document.createElement('div');
+        section.className = 'mt-6';
+        section.innerHTML = `<h3 class="text-md font-bold text-blue-600 border-b pb-1 mb-2">${group.section}</h3>`;
+
+        group.items.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'bg-gray-50 border rounded-lg p-3 mb-3 shadow-sm';
+          itemDiv.innerHTML = `
+            <div class="flex flex-col gap-2">
+              <span class="font-medium text-sm text-gray-800">${item}</span>
+              <div class="flex gap-4">
+                <label class="inline-flex items-center text-sm">
+                  <input type="radio" name="${item}" value="GOOD" class="mr-1" required> Good
+                </label>
+                <label class="inline-flex items-center text-sm">
+                  <input type="radio" name="${item}" value="NO" class="mr-1"> No
+                </label>
+              </div>
+              <input type="text" name="${item}_remark" placeholder="Catatan (opsional)" class="border rounded px-3 py-1 text-sm w-full">
+            </div>`;
+
+          section.appendChild(itemDiv);
+        });
+
+        container.appendChild(section);
       });
     }
-  });
-});
-const ws = XLSX.utils.aoa_to_sheet(data);
-const wb = XLSX.utils.book_new();
-XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-XLSX.writeFile(wb, "checklist_p2h.xlsx");
+
+    function exportToExcel() {
+      const form = document.getElementById("checklistForm");
+      const data = [["Item", "Kondisi", "Remark"]];
+      checklistItems.forEach(group => {
+        group.items.forEach(item => {
+          const radios = form.querySelectorAll(`input[name='${item}']`);
+          const selected = [...radios].find(r => r.checked)?.value || "";
+          const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+          data.push([item, selected, remark]);
+        });
+      });
+      const ws = XLSX.utils.aoa_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Checklist");
+      XLSX.writeFile(wb, "checklist_p2h.xlsx");
     }
 
     function login(event) {
