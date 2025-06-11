@@ -36,7 +36,6 @@
             <div class="flex items-center gap-2">
               <label><input type="radio" name="${item}" value="GOOD" required> Good</label>
               <label><input type="radio" name="${item}" value="NO"> No</label>
-              <input type="file" name="${item}_foto" accept="image/*" class="ml-2">
               <input type="text" name="${item}_remark" placeholder="Remark" class="border p-1 w-1/2">
             </div>`;
           container.appendChild(div);
@@ -86,6 +85,11 @@
       </div>
 
       <div id="checklistContainer"></div>
+
+      <div class="mt-6 mb-4">
+        <label class="block font-medium mb-2">Upload Foto (Opsional)</label>
+        <input type="file" name="foto_umum" accept="image/*" class="border p-2 w-full">
+      </div>
 
       <div class="mt-6">
         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Export ke Excel</button>
