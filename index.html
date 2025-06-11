@@ -109,7 +109,7 @@ function generateChecklist() {
 
     const sublist = document.createElement('div');
     sublist.id = `sublist-${idx}`;
-    sublist.className = 'space-y-3';
+    sublist.className = 'space-y-3 hidden';
 
     group.items.forEach(item => {
       const itemDiv = document.createElement('div');
