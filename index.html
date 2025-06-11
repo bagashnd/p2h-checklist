@@ -80,7 +80,55 @@
       }
     }
 
-    window.onload = generateChecklist;
+    function showSuccessNotification(message) {
+  const notif = document.createElement('div');
+  notif.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+  notif.textContent = message;
+  document.body.appendChild(notif);
+  setTimeout(() => notif.remove(), 3000);
+}
+
+function submitToDatabase(event) {
+  event.preventDefault();
+
+  const form = document.getElementById("checklistForm");
+  const formData = {
+    nama: form.nama.value,
+    tanggal: form.tanggal.value,
+    asset: form.asset.value,
+    lokasi: form.lokasi.value,
+    checklist: []
+  };
+
+  checklistItems.forEach(group => {
+    group.items.forEach(item => {
+      const radios = form.querySelectorAll(`input[name='${item}']`);
+      const selected = [...radios].find(r => r.checked)?.value || "";
+      const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+      formData.checklist.push({ item, status: selected, remark });
+    });
+  });
+
+  fetch("https://your-api-server.com/api/checklist", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
+  })
+  .then(res => {
+    if (res.ok) {
+      showSuccessNotification("Checklist berhasil disimpan!");
+      exportToExcel();
+    } else {
+      alert("Gagal menyimpan checklist.");
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Terjadi kesalahan koneksi.");
+  });
+}
+
+window.onload = generateChecklist;
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -89,7 +137,7 @@
   <!-- Login Page -->
   <div id="loginPage" class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
     <div class="flex justify-center mb-6">
-      <img src="logo.png" alt="Logo Perusahaan" class="h-20">
+      <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="Logo Perusahaan" class="h-20">
     </div>
     <h2 class="text-center text-xl font-semibold text-gray-700 mb-4">Login Aplikasi P2H</h2>
     <form onsubmit="login(event)">
