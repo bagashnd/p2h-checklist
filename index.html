@@ -1,206 +1,213 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checklist P2H Crimping</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex items-center justify-center">
 
-<!-- Login Page -->
-<div id="loginPage" class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
-  <div class="flex justify-center mb-6">
-    <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="Logo" class="h-20" />
+  <!-- Login Page -->
+  <div id="loginPage" class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
+    <div class="flex justify-center mb-6">
+      <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="Logo Perusahaan" class="h-20">
+    </div>
+    <h2 class="text-center text-xl font-semibold text-gray-700 mb-4">Login Aplikasi P2H</h2>
+    <form onsubmit="login(event)">
+      <input id="username" type="text" placeholder="Username" required class="mb-3 w-full px-3 py-2 border rounded">
+      <input id="password" type="password" placeholder="Password" required class="mb-4 w-full px-3 py-2 border rounded">
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Masuk</button>
+    </form>
   </div>
-  <h2 class="text-center text-xl font-semibold text-gray-700 mb-4">Login Aplikasi P2H</h2>
-  <form onsubmit="login(event)">
-    <input id="username" type="text" placeholder="Username" required class="mb-3 w-full px-3 py-2 border rounded" />
-    <input id="password" type="password" placeholder="Password" required class="mb-4 w-full px-3 py-2 border rounded" />
-    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Masuk</button>
-  </form>
-</div>
 
-<!-- Main Checklist Page -->
-<div id="mainPage" class="hidden w-full max-w-xl bg-white p-6 rounded-lg shadow-md overflow-y-auto">
-  <h1 class="text-lg font-bold text-center mb-4 flex items-center justify-center gap-2">
-    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Checklist Icon" class="w-6 h-6">
-    Checklist P2H Mesin Crimping
-  </h1>
-  <form id="checklistForm" onsubmit="submitToDatabase(event)">
-    <div class="mb-4">
-      <label class="block text-sm font-medium">Nama Pemeriksa</label>
-      <input type="text" name="nama" required class="border w-full p-2 rounded" />
-    </div>
-    <div class="mb-4">
-      <label class="block text-sm font-medium">Tanggal</label>
-      <input type="date" name="tanggal" required class="border w-full p-2 rounded" />
-    </div>
-    <div class="mb-4">
-      <label class="block text-sm font-medium">No Asset</label>
-      <input type="text" name="asset" required class="border w-full p-2 rounded" />
-    </div>
-    <div class="mb-4">
-      <label class="block text-sm font-medium">Lokasi</label>
-      <input type="text" name="lokasi" required class="border w-full p-2 rounded" />
-    </div>
-    <div class="mb-4">
-      <label class="block text-sm font-medium">Hours Meter</label>
-      <input type="number" name="hours_meter" required min="0" placeholder="Masukkan angka (jam)" class="border w-full p-2 rounded" />
-    </div>
+  <!-- Main Checklist Page -->
+  <div id="mainPage" class="hidden w-full max-w-xl bg-white p-6 rounded-lg shadow-md overflow-y-auto max-h-screen">
+    <h1 class="text-lg font-bold text-center mb-4 flex items-center justify-center gap-2">
+      <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Checklist Icon" class="w-6 h-6">
+      Checklist P2H Mesin Crimping
+    </h1>
+    <form id="checklistForm" onsubmit="submitToDatabase(event)">
+      <div class="mb-4">
+        <label class="block text-sm font-medium">Nama Pemeriksa</label>
+        <input type="text" name="nama" required class="border w-full p-2 rounded">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium">Tanggal</label>
+        <input type="date" name="tanggal" required class="border w-full p-2 rounded">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium">Waktu (Jam)</label>
+        <input type="time" name="waktu" required class="border w-full p-2 rounded">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium">No Asset</label>
+        <input type="text" name="asset" required class="border w-full p-2 rounded">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium">Lokasi</label>
+        <input type="text" name="lokasi" required class="border w-full p-2 rounded">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium">Hours Meter</label>
+        <input type="number" name="hours_meter" required class="border w-full p-2 rounded" min="0" placeholder="Masukkan angka (jam)">
+      </div>
 
-    <div id="checklistContainer"></div>
+      <div id="checklistContainer"></div>
 
-    <div class="mt-6 mb-4">
-      <label class="block text-sm font-medium mb-2">Upload Foto</label>
-      <input type="file" name="foto_umum" accept="image/*" class="border p-2 w-full rounded" />
-    </div>
+      <div class="mt-6 mb-4">
+        <label class="block text-sm font-medium mb-2">Upload Foto (Opsional)</label>
+        <input type="file" name="foto_umum" accept="image/*" class="border p-2 w-full rounded">
+      </div>
 
-    <div class="mt-6 grid grid-cols-2 gap-4">
-      <button type="submit" class="bg-green-600 hover:bg-green-700 text-white py-2 rounded">Submit</button>
-      <button type="button" onclick="exportToExcel()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Export ke Excel</button>
-    </div>
-  </form>
-</div>
+      <div class="mt-6 grid grid-cols-2 gap-4">
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white py-2 rounded">Submit</button>
+        <button type="button" onclick="exportToExcel()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Export ke Excel</button>
+      </div>
+    </form>
+  </div>
 
-<script>
-const checklistItems = [
-  { section: "A. PANEL", items: ["Display", "Switch ON/OFF", "Switch Adjuster", "Panel Release", "Panel Crimp", "Cover"] },
-  { section: "B. TOOLS", items: ["Swager", "Swager Racks", "Swager Dies (Batu Dash)"] },
-  { section: "C. MAINTENANCE", items: [
-    "Cek Oil Level", "Greasing Area Dudukan Batu Dash", "Power Supply", "Cek Function Crimp", "Cek Function Release",
-    "Putaran motor/pompa searah jarum jam", "Suara bising pada motor/pompa", "Panas berlebih pada motor/pompa",
-    "Cek Oil Leaking Solenoid", "Cek Oil Leaking Piping/Hose", "Cek Oil leaking Adaptor/Connector", "Calibration"
-  ]}
-];
+  <script>
+    const checklistItems = [
+      { section: "A. PANEL", items: [
+        "Display", "Switch ON/OFF", "Switch Adjuster", "Panel Release", "Panel Crimp", "Cover"
+      ]},
+      { section: "B. TOOLS", items: [
+        "Swager", "Swager Racks", "Swager Dies (Batu Dash)"
+      ]},
+      { section: "C. MAINTENANCE", items: [
+        "Cek Oil Level", "Greasing Area Dudukan Batu Dash", "Power Supply",
+        "Cek Function Crimp", "Cek Function Release", "Putaran motor/pompa searah jarum jam",
+        "Suara bising pada motor/pompa", "Panas berlebih pada motor/pompa",
+        "Cek Oil Leaking Solenoid", "Cek Oil Leaking Piping/Hose",
+        "Cek Oil leaking Adaptor/Connector", "Calibration"
+      ]}
+    ];
 
-function generateChecklist() {
-  const container = document.getElementById('checklistContainer');
-  checklistItems.forEach((group, index) => {
-    const section = document.createElement('div');
-    section.className = 'mt-6';
-    const toggleId = `section-${index}`;
+    function generateChecklist() {
+      const container = document.getElementById('checklistContainer');
+      checklistItems.forEach(group => {
+        const section = document.createElement('div');
+        section.className = 'mt-6';
+        section.innerHTML = `<h3 class="text-md font-bold text-blue-600 border-b pb-1 mb-2">${group.section}</h3>`;
 
-    section.innerHTML = `
-      <button type="button" onclick="toggleSection('${toggleId}', this)" class="w-full text-left text-md font-bold text-blue-600 border-b pb-1 mb-2 flex items-center justify-between">
-        ${group.section}
-        <span class="text-gray-500 text-sm">&#x25BC;</span>
-      </button>
-      <div id="${toggleId}" class="space-y-3 hidden transition-all duration-300 ease-in-out"></div>
-    `;
+        group.items.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'bg-gray-50 border rounded-lg p-3 mb-3 shadow-sm';
+          itemDiv.innerHTML = `
+            <div class="flex flex-col gap-2">
+              <span class="font-medium text-sm text-gray-800">${item}</span>
+              <div class="flex gap-4">
+                <label class="inline-flex items-center text-sm">
+                  <input type="radio" name="${item}" value="GOOD" class="mr-1" required> Good
+                </label>
+                <label class="inline-flex items-center text-sm">
+                  <input type="radio" name="${item}" value="NO" class="mr-1"> No
+                </label>
+              </div>
+              <input type="text" name="${item}_remark" placeholder="Catatan (opsional)" class="border rounded px-3 py-1 text-sm w-full">
+            </div>`;
+          section.appendChild(itemDiv);
+        });
 
-    const subContainer = section.querySelector(`#${toggleId}`);
-    group.items.forEach(item => {
-      const itemDiv = document.createElement('div');
-      itemDiv.className = 'bg-gray-50 border rounded-lg p-3 shadow-sm';
-      itemDiv.innerHTML = `
-        <div class="flex flex-col gap-2">
-          <span class="font-medium text-sm text-gray-800">${item}</span>
-          <div class="flex gap-4">
-            <label class="inline-flex items-center text-sm">
-              <input type="radio" name="${item}" value="GOOD" class="mr-1" required> Good
-            </label>
-            <label class="inline-flex items-center text-sm">
-              <input type="radio" name="${item}" value="NO" class="mr-1"> No
-            </label>
-          </div>
-          <input type="text" name="${item}_remark" placeholder="Catatan (opsional)" class="border rounded px-3 py-1 text-sm w-full">
-        </div>
-      `;
-      subContainer.appendChild(itemDiv);
-    });
-
-    container.appendChild(section);
-  });
-}
-
-function toggleSection(id, btn) {
-  const section = document.getElementById(id);
-  section.classList.toggle('hidden');
-  const icon = btn.querySelector('span');
-  icon.innerHTML = section.classList.contains('hidden') ? '&#x25BC;' : '&#x25B2;';
-}
-
-function exportToExcel() {
-  const form = document.getElementById("checklistForm");
-  const data = [["Item", "Kondisi", "Remark"]];
-  checklistItems.forEach(group => {
-    group.items.forEach(item => {
-      const radios = form.querySelectorAll(`input[name='${item}']`);
-      const selected = [...radios].find(r => r.checked)?.value || "";
-      const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
-      data.push([item, selected, remark]);
-    });
-  });
-  const ws = XLSX.utils.aoa_to_sheet(data);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-  XLSX.writeFile(wb, "checklist_p2h.xlsx");
-}
-
-function showSuccessNotification(message) {
-  const notif = document.createElement('div');
-  notif.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
-  notif.textContent = message;
-  document.body.appendChild(notif);
-  setTimeout(() => notif.remove(), 3000);
-}
-
-function submitToDatabase(event) {
-  event.preventDefault();
-
-  const form = document.getElementById("checklistForm");
-  const formData = {
-    nama: form.nama.value,
-    tanggal: form.tanggal.value,
-    asset: form.asset.value,
-    lokasi: form.lokasi.value,
-    hours_meter: form.hours_meter.value,
-    checklist: []
-  };
-
-  checklistItems.forEach(group => {
-    group.items.forEach(item => {
-      const radios = form.querySelectorAll(`input[name='${item}']`);
-      const selected = [...radios].find(r => r.checked)?.value || "";
-      const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
-      formData.checklist.push({ item, status: selected, remark });
-    });
-  });
-
-  fetch("https://your-api-server.com/api/checklist", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData)
-  })
-  .then(res => {
-    if (res.ok) {
-      showSuccessNotification("Checklist berhasil disimpan!");
-      exportToExcel();
-    } else {
-      alert("Gagal menyimpan checklist.");
+        container.appendChild(section);
+      });
     }
-  })
-  .catch(err => {
-    console.error(err);
-    alert("Terjadi kesalahan koneksi.");
-  });
-}
 
-function login(event) {
-  event.preventDefault();
-  const user = document.getElementById("username").value;
-  const pass = document.getElementById("password").value;
-  if (user === "admin" && pass === "1234") {
-    document.getElementById("loginPage").classList.add("hidden");
-    document.getElementById("mainPage").classList.remove("hidden");
-  } else {
-    alert("Username atau password salah");
-  }
-}
+    function login(event) {
+      event.preventDefault();
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      if (user === "admin" && pass === "1234") {
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("mainPage").classList.remove("hidden");
+      } else {
+        alert("Username atau password salah");
+      }
+    }
 
-window.onload = generateChecklist;
-</script>
+    function showSuccessNotification(message) {
+      const notif = document.createElement('div');
+      notif.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+      notif.textContent = message;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 3000);
+    }
+
+    function submitToDatabase(event) {
+      event.preventDefault();
+
+      const form = document.getElementById("checklistForm");
+      const formData = {
+        nama: form.nama.value,
+        tanggal: form.tanggal.value,
+        waktu: form.waktu.value,
+        asset: form.asset.value,
+        lokasi: form.lokasi.value,
+        hours_meter: form.hours_meter.value,
+        checklist: []
+      };
+
+      checklistItems.forEach(group => {
+        group.items.forEach(item => {
+          const radios = form.querySelectorAll(`input[name='${item}']`);
+          const selected = [...radios].find(r => r.checked)?.value || "";
+          const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+          formData.checklist.push({ item, status: selected, remark });
+        });
+      });
+
+      fetch("https://your-api-server.com/api/checklist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      })
+      .then(res => {
+        if (res.ok) {
+          showSuccessNotification("Checklist berhasil disimpan!");
+          exportToExcel();
+        } else {
+          alert("Gagal menyimpan checklist.");
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Terjadi kesalahan koneksi.");
+      });
+    }
+
+    function exportToExcel() {
+      const form = document.getElementById("checklistForm");
+
+      const meta = [
+        ["Nama Pemeriksa", form.nama.value],
+        ["Tanggal", form.tanggal.value],
+        ["Waktu", form.waktu.value],
+        ["No Asset", form.asset.value],
+        ["Lokasi", form.lokasi.value],
+        ["Hours Meter", form.hours_meter.value],
+        []
+      ];
+
+      const data = meta.concat([["Item", "Kondisi", "Remark"]]);
+
+      checklistItems.forEach(group => {
+        group.items.forEach(item => {
+          const radios = form.querySelectorAll(`input[name='${item}']`);
+          const selected = [...radios].find(r => r.checked)?.value || "";
+          const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+          data.push([item, selected, remark]);
+        });
+      });
+
+      const ws = XLSX.utils.aoa_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Checklist");
+      XLSX.writeFile(wb, "checklist_p2h.xlsx");
+    }
+
+    window.onload = generateChecklist;
+  </script>
 </body>
 </html>
