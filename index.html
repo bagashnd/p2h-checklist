@@ -137,7 +137,7 @@ window.onload = generateChecklist;
   <!-- Login Page -->
   <div id="loginPage" class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
     <div class="flex justify-center mb-6">
-      <img src="logo.png" alt="Logo Perusahaan" class="h-20">
+      <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="Logo Perusahaan" class="h-20">
     </div>
     <h2 class="text-center text-xl font-semibold text-gray-700 mb-4">Login Aplikasi P2H</h2>
     <form onsubmit="login(event)">
@@ -149,7 +149,10 @@ window.onload = generateChecklist;
 
   <!-- Main Checklist Page -->
   <div id="mainPage" class="hidden w-full max-w-xl bg-white p-6 rounded-lg shadow-md overflow-y-auto">
-    <h1 class="text-lg font-bold text-center mb-4">Checklist P2H Mesin Crimping</h1>
+    <h1 class="text-lg font-bold text-center mb-4 flex items-center justify-center gap-2">
+  <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Checklist Icon" class="w-6 h-6">
+  Checklist P2H Mesin Crimping
+</h1>
     <form id="checklistForm" onsubmit="submitToDatabase(event)">
       <div class="mb-4">
         <label class="block text-sm font-medium">Nama Pemeriksa</label>
