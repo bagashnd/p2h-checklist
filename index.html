@@ -102,7 +102,7 @@
   <!-- Main Checklist Page -->
   <div id="mainPage" class="hidden w-full max-w-xl bg-white p-6 rounded-lg shadow-md overflow-y-auto">
     <h1 class="text-lg font-bold text-center mb-4">Checklist P2H Mesin Crimping</h1>
-    <form id="checklistForm" onsubmit="event.preventDefault(); exportToExcel();">
+    <form id="checklistForm" onsubmit="submitToDatabase(event)">
       <div class="mb-4">
         <label class="block text-sm font-medium">Nama Pemeriksa</label>
         <input type="text" name="nama" required class="border w-full p-2 rounded">
