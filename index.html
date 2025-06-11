@@ -6,17 +6,15 @@
   <title>Checklist P2H Crimping</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .collapsible-content { display: none; }
-    .collapsible.open .collapsible-content { display: block; }
-  </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
 
   <!-- Login Page -->
-  <div id="loginPage" class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md text-center">
-    <img src="logo.png" alt="Logo Perusahaan" class="mx-auto mb-4 w-24 h-24 object-contain" />
-    <h2 class="text-xl font-semibold text-gray-700 mb-4">Login Aplikasi P2H Crimping Machine</h2>
+  <div id="loginPage" class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
+    <div class="flex justify-center mb-6">
+      <img src="logo.png" alt="Logo Perusahaan" class="h-20">
+    </div>
+    <h2 class="text-center text-xl font-semibold text-gray-700 mb-4">Login Aplikasi P2H</h2>
     <form onsubmit="login(event)">
       <input id="username" type="text" placeholder="Username" required class="mb-3 w-full px-3 py-2 border rounded">
       <input id="password" type="password" placeholder="Password" required class="mb-4 w-full px-3 py-2 border rounded">
@@ -26,27 +24,25 @@
 
   <!-- Main Page -->
   <div id="mainPage" class="hidden w-full max-w-3xl bg-white p-6 rounded-lg shadow-md overflow-y-auto max-h-screen">
-    <div class="flex flex-col items-center mb-4">
-      <img src="logo.png" alt="Logo Checklist" class="w-20 h-20 object-contain mb-2" />
-      <h1 class="text-lg font-bold text-center">Checklist P2H Mesin Crimping</h1>
-    </div>
+    <h1 class="text-lg font-bold text-center mb-4 flex items-center justify-center gap-2">
+      <img src="logo.png" alt="Checklist Icon" class="w-6 h-6">
+      Checklist P2H Mesin Crimping
+    </h1>
 
     <form id="checklistForm" onsubmit="submitToDatabase(event)">
-      <div class="mb-4">
-        <label class="block text-sm font-medium">Nama Pemeriksa</label>
-        <input type="text" name="nama" required class="border w-full p-2 rounded">
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-sm font-medium">Nama Pemeriksa</label>
+          <input type="text" name="nama" required class="border w-full p-2 rounded">
+        </div>
         <div>
           <label class="block text-sm font-medium">Tanggal</label>
           <input type="date" name="tanggal" required class="border w-full p-2 rounded">
         </div>
         <div>
           <label class="block text-sm font-medium">Waktu</label>
-          <input type="time" name="waktu" id="waktuInput" required class="border w-full p-2 rounded">
+          <input type="time" name="jam" required class="border w-full p-2 rounded">
         </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         <div>
           <label class="block text-sm font-medium">No Asset</label>
           <input type="text" name="asset" required class="border w-full p-2 rounded">
@@ -55,148 +51,170 @@
           <label class="block text-sm font-medium">Lokasi</label>
           <input type="text" name="lokasi" required class="border w-full p-2 rounded">
         </div>
-      </div>
-      <div class="mt-4">
-        <label class="block text-sm font-medium">Hours Meter</label>
-        <input type="number" name="hours_meter" required class="border w-full p-2 rounded" min="0">
+        <div>
+          <label class="block text-sm font-medium">Hours Meter</label>
+          <input type="number" name="hours_meter" min="0" required class="border w-full p-2 rounded" placeholder="Masukkan angka (jam)">
+        </div>
       </div>
 
-      <!-- Checklist -->
-      <div id="checklistContainer" class="mt-6"></div>
+      <div id="checklistContainer" class="mb-6"></div>
 
-      <div class="mt-6 mb-4">
-        <label class="block text-sm font-medium mb-2">Upload Foto (Opsional)</label>
+      <div class="mb-4">
+        <label class="block text-sm font-medium">Upload Foto (Opsional)</label>
         <input type="file" name="foto_umum" accept="image/*" class="border p-2 w-full rounded">
       </div>
 
-      <div class="grid grid-cols-2 gap-4 mt-6">
+      <div class="mt-6 grid grid-cols-2 gap-4">
         <button type="submit" class="bg-green-600 hover:bg-green-700 text-white py-2 rounded">Submit</button>
         <button type="button" onclick="exportToExcel()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Export ke Excel</button>
       </div>
     </form>
   </div>
 
-  <script>
-    const checklistItems = [
-      { section: "A. PANEL", items: ["Display", "Switch ON/OFF", "Switch Adjuster", "Panel Release", "Panel Crimp", "Cover"] },
-      { section: "B. TOOLS", items: ["Swager", "Swager Racks", "Swager Dies (Batu Dash)"] },
-      { section: "C. MAINTENANCE", items: [
-        "Cek Oil Level", "Greasing Area Dudukan Batu Dash", "Power Supply",
-        "Cek Function Crimp", "Cek Function Release", "Putaran motor/pompa searah jarum jam",
-        "Suara bising pada motor/pompa", "Panas berlebih pada motor/pompa",
-        "Cek Oil Leaking Solenoid", "Cek Oil Leaking Piping/Hose",
-        "Cek Oil leaking Adaptor/Connector", "Calibration"
-      ]}
-    ];
+<script>
+const checklistItems = [
+  { section: "A. PANEL", items: ["Display", "Switch ON/OFF", "Switch Adjuster", "Panel Release", "Panel Crimp", "Cover"] },
+  { section: "B. TOOLS", items: ["Swager", "Swager Racks", "Swager Dies (Batu Dash)"] },
+  { section: "C. MAINTENANCE", items: [
+      "Cek Oil Level",
+      "Greasing Area Dudukan Batu Dash",
+      "Power Supply",
+      "Cek Function Crimp",
+      "Cek Function Release",
+      "Putaran motor/pompa searah jarum jam",
+      "Suara bising pada motor/pompa",
+      "Panas berlebih pada motor/pompa",
+      "Cek Oil Leaking Solenoid",
+      "Cek Oil Leaking Piping/Hose",
+      "Cek Oil leaking Adaptor/Connector",
+      "Calibration"
+  ]}
+];
 
-    function generateChecklist() {
-      const container = document.getElementById('checklistContainer');
-      checklistItems.forEach(group => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'collapsible bg-gray-100 border rounded-lg mb-4';
-        wrapper.innerHTML = `
-          <div class="cursor-pointer bg-blue-100 px-4 py-2 font-bold text-blue-700 rounded-t" onclick="toggleCollapse(this)">
-            ${group.section}
-          </div>
-          <div class="collapsible-content px-4 py-2">
-            ${group.items.map(item => `
-              <div class="mb-3">
-                <label class="block text-sm font-medium">${item}</label>
-                <div class="flex items-center gap-4 mt-1">
-                  <label><input type="radio" name="${item}" value="GOOD" required class="mr-1"> Good</label>
-                  <label><input type="radio" name="${item}" value="NO" class="mr-1"> No</label>
-                </div>
-                <input type="text" name="${item}_remark" placeholder="Catatan (opsional)" class="mt-1 border rounded w-full p-1 text-sm">
-              </div>
-            `).join('')}
-          </div>`;
-        container.appendChild(wrapper);
-      });
-    }
+function generateChecklist() {
+  const container = document.getElementById('checklistContainer');
+  container.innerHTML = '';
+  checklistItems.forEach(group => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'collapsible bg-gray-100 border rounded-lg mb-4';
 
-    function toggleCollapse(header) {
-      const wrapper = header.parentElement;
-      wrapper.classList.toggle('open');
-    }
+    const content = group.items.map(item => {
+      const lower = item.toLowerCase();
+      const useAdaTidak = lower.includes("panas berlebih") || lower.includes("suara bising");
 
-    function login(event) {
-      event.preventDefault();
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-      if (user === "admin" && pass === "1234") {
-        document.getElementById("loginPage").classList.add("hidden");
-        document.getElementById("mainPage").classList.remove("hidden");
-        document.getElementById("waktuInput").value = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-      } else {
-        alert("Username atau password salah");
-      }
-    }
+      const options = useAdaTidak
+        ? `
+          <label><input type="radio" name="${item}" value="Ada" required class="mr-1"> Ada</label>
+          <label><input type="radio" name="${item}" value="Tidak Ada" class="ml-4 mr-1"> Tidak Ada</label>
+        `
+        : `
+          <label><input type="radio" name="${item}" value="GOOD" required class="mr-1"> Good</label>
+          <label><input type="radio" name="${item}" value="NO" class="ml-4 mr-1"> No</label>
+        `;
 
-    function showSuccessNotification(message) {
-      const notif = document.createElement('div');
-      notif.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
-      notif.textContent = message;
-      document.body.appendChild(notif);
-      setTimeout(() => notif.remove(), 3000);
-    }
+      return `
+        <div class="mb-3">
+          <label class="block text-sm font-medium">${item}</label>
+          <div class="flex items-center gap-4 mt-1">${options}</div>
+          <input type="text" name="${item}_remark" placeholder="Catatan (opsional)" class="mt-1 border rounded w-full p-1 text-sm">
+        </div>`;
+    }).join('');
 
-    function submitToDatabase(event) {
-      event.preventDefault();
-      const form = document.getElementById("checklistForm");
-      const formData = {
-        nama: form.nama.value,
-        tanggal: form.tanggal.value,
-        waktu: form.waktu.value,
-        asset: form.asset.value,
-        lokasi: form.lokasi.value,
-        hours_meter: form.hours_meter.value,
-        checklist: []
-      };
+    wrapper.innerHTML = `
+      <div class="cursor-pointer bg-blue-200 px-4 py-2 font-bold text-blue-800 rounded-t" onclick="toggleCollapse(this)">
+        ${group.section}
+      </div>
+      <div class="collapsible-content px-4 py-2 hidden">
+        ${content}
+      </div>`;
+    container.appendChild(wrapper);
+  });
+}
 
-      checklistItems.forEach(group => {
-        group.items.forEach(item => {
-          const status = form.querySelector(`input[name='${item}']:checked`)?.value || "";
-          const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
-          formData.checklist.push({ item, status, remark });
-        });
-      });
+function toggleCollapse(header) {
+  const content = header.nextElementSibling;
+  content.classList.toggle('hidden');
+}
 
-      console.log("Data terkirim:", formData);
+function login(event) {
+  event.preventDefault();
+  const user = document.getElementById("username").value;
+  const pass = document.getElementById("password").value;
+  if (user === "admin" && pass === "1234") {
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("mainPage").classList.remove("hidden");
+  } else {
+    alert("Username atau password salah");
+  }
+}
+
+function showSuccessNotification(message) {
+  const notif = document.createElement('div');
+  notif.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+  notif.textContent = message;
+  document.body.appendChild(notif);
+  setTimeout(() => notif.remove(), 3000);
+}
+
+function submitToDatabase(event) {
+  event.preventDefault();
+  const form = document.getElementById("checklistForm");
+  const formData = {
+    nama: form.nama.value,
+    tanggal: form.tanggal.value,
+    jam: form.jam.value,
+    asset: form.asset.value,
+    lokasi: form.lokasi.value,
+    hours_meter: form.hours_meter.value,
+    checklist: []
+  };
+
+  checklistItems.forEach(group => {
+    group.items.forEach(item => {
+      const radios = form.querySelectorAll(`input[name='${item}']`);
+      const selected = [...radios].find(r => r.checked)?.value || "";
+      const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+      formData.checklist.push({ item, status: selected, remark });
+    });
+  });
+
+  fetch("https://your-api-server.com/api/checklist", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
+  })
+  .then(res => {
+    if (res.ok) {
       showSuccessNotification("Checklist berhasil disimpan!");
       exportToExcel();
+    } else {
+      alert("Gagal menyimpan checklist.");
     }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Terjadi kesalahan koneksi.");
+  });
+}
 
-    function exportToExcel() {
-      const form = document.getElementById("checklistForm");
+function exportToExcel() {
+  const form = document.getElementById("checklistForm");
+  const data = [["Item", "Kondisi", "Remark"]];
+  checklistItems.forEach(group => {
+    group.items.forEach(item => {
+      const radios = form.querySelectorAll(`input[name='${item}']`);
+      const selected = [...radios].find(r => r.checked)?.value || "";
+      const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+      data.push([item, selected, remark]);
+    });
+  });
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Checklist");
+  XLSX.writeFile(wb, "checklist_p2h.xlsx");
+}
 
-      const meta = [
-        ["Nama Pemeriksa", form.nama.value],
-        ["Tanggal", form.tanggal.value],
-        ["Waktu", form.waktu.value],
-        ["No Asset", form.asset.value],
-        ["Lokasi", form.lokasi.value],
-        ["Hours Meter", form.hours_meter.value],
-        []
-      ];
-
-      const data = meta.concat([["Item", "Kondisi", "Catatan"]]);
-
-      checklistItems.forEach(group => {
-        group.items.forEach(item => {
-          const radios = form.querySelectorAll(`input[name='${item}']`);
-          const selected = [...radios].find(r => r.checked)?.value || "";
-          const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
-          data.push([item, selected, remark]);
-        });
-      });
-
-      const ws = XLSX.utils.aoa_to_sheet(data);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-      XLSX.writeFile(wb, "checklist_p2h.xlsx");
-    }
-
-    window.onload = generateChecklist;
-  </script>
+window.onload = generateChecklist;
+</script>
 </body>
 </html>
