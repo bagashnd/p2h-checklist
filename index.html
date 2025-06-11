@@ -1,219 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <meta charset="UTF-8">
-  <title>Form Checklist P2H Crimping</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
-    .section-title { margin-top: 30px; font-size: 1.2em; font-weight: bold; }
-    input[type="text"], input[type="date"] { width: 100%; padding: 5px; }
-  </style>
-</head>
-<body>
-
-  <h2>Form Checklist P2H Mesin Crimping</h2>
-
-  <form id="checklistForm">
-    <label>Nama Pemeriksa: <input type="text" name="nama" required></label><br><br>
-    <label>Tanggal: <input type="date" name="tanggal" required></label><br><br>
-    <label>No Asset: <input type="text" name="asset" required></label><br><br>
-    <label>Lokasi: <input type="text" name="lokasi" required></label><br><br>
-
-    <!-- Section -->
-    <div class="section-title">DISPLAY</div>
-    <table>
-      <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-      <tr>
-        <td>Display</td>
-        <td><input type="radio" name="display" value="GOOD" required></td>
-        <td><input type="radio" name="display" value="NO"></td>
-        <td><input type="text" name="remark_display"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">SWITCH PANEL</div>
-    <table>
-      <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-      <tr>
-        <td>Switch ON/OFF</td>
-        <td><input type="radio" name="switch_onoff" value="GOOD" required></td>
-        <td><input type="radio" name="switch_onoff" value="NO"></td>
-        <td><input type="text" name="remark_onoff"></td>
-      </tr>
-      <tr>
-        <td>Switch Adjuster</td>
-        <td><input type="radio" name="switch_adjuster" value="GOOD" required></td>
-        <td><input type="radio" name="switch_adjuster" value="NO"></td>
-        <td><input type="text" name="remark_adjuster"></td>
-      </tr>
-      <tr>
-        <td>Panel Release</td>
-        <td><input type="radio" name="panel_release" value="GOOD" required></td>
-        <td><input type="radio" name="panel_release" value="NO"></td>
-        <td><input type="text" name="remark_release"></td>
-      </tr>
-      <tr>
-        <td>Panel Crimp</td>
-        <td><input type="radio" name="panel_crimp" value="GOOD" required></td>
-        <td><input type="radio" name="panel_crimp" value="NO"></td>
-        <td><input type="text" name="remark_crimp"></td>
-      </tr>
-    </table>
-
-    <div class="section-title">COVER</div>
-    <table>
-      <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-      <tr>
-        <td>Swager</td>
-        <td><input type="radio" name="swager" value="GOOD" required></td>
-        <td><input type="radio" name="swager" value="NO"></td>
-        <td><input type="text" name="remark_swager"></td>
-      </tr>
-      <tr>
-        <td>Swager Racks</td>
-        <td><input type="radio" name="swager_racks" value="GOOD" required></td>
-        <td><input type="radio" name="swager_racks" value="NO"></td>
-        <td><input type="text" name="remark_swager_racks"></td>
-      </tr>
-      <tr>
-        <td>Swager Dies (Batu Dash)</td>
-        <td><input type="radio" name="swager_dies" value="GOOD" required></td>
-        <td><input type="radio" name="swager_dies" value="NO"></td>
-        <td><input type="text" name="remark_swager_dies"></td>
-      </tr>
-    </table>
-
-    <!-- Tambahkan bagian lain seperti: CEK OIL, GREASING, ELECTRICAL, MECHANICAL, dll. sesuai kebutuhan -->
-<div class="section-title">CEK OIL LEVEL</div>
-<table>
-  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-  <tr>
-    <td>Cek Oil Level</td>
-    <td><input type="radio" name="oil_level" value="GOOD" required></td>
-    <td><input type="radio" name="oil_level" value="NO"></td>
-    <td><input type="text" name="remark_oil_level"></td>
-  </tr>
-</table>
-
-<div class="section-title">GREASING</div>
-<table>
-  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-  <tr>
-    <td>Area Dudukan Batu Dash</td>
-    <td><input type="radio" name="greasing_dash" value="GOOD" required></td>
-    <td><input type="radio" name="greasing_dash" value="NO"></td>
-    <td><input type="text" name="remark_greasing_dash"></td>
-  </tr>
-</table>
-
-<div class="section-title">ELECTRICAL</div>
-<table>
-  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-  <tr>
-    <td>Power</td>
-    <td><input type="radio" name="electrical_power" value="GOOD" required></td>
-    <td><input type="radio" name="electrical_power" value="NO"></td>
-    <td><input type="text" name="remark_electrical_power"></td>
-  </tr>
-</table>
-
-<div class="section-title">MECHANICAL</div>
-<table>
-  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-  <tr>
-    <td>Cek Function Crimp</td>
-    <td><input type="radio" name="mech_crimp" value="GOOD" required></td>
-    <td><input type="radio" name="mech_crimp" value="NO"></td>
-    <td><input type="text" name="remark_mech_crimp"></td>
-  </tr>
-  <tr>
-    <td>Cek Function Release</td>
-    <td><input type="radio" name="mech_release" value="GOOD" required></td>
-    <td><input type="radio" name="mech_release" value="NO"></td>
-    <td><input type="text" name="remark_mech_release"></td>
-  </tr>
-  <tr>
-    <td>Putaran Motor/Pompa searah jarum jam</td>
-    <td><input type="radio" name="mech_rotation" value="GOOD" required></td>
-    <td><input type="radio" name="mech_rotation" value="NO"></td>
-    <td><input type="text" name="remark_mech_rotation"></td>
-  </tr>
-  <tr>
-    <td>Suara bising pada motor/pompa</td>
-    <td><input type="radio" name="mech_noise" value="GOOD" required></td>
-    <td><input type="radio" name="mech_noise" value="NO"></td>
-    <td><input type="text" name="remark_mech_noise"></td>
-  </tr>
-  <tr>
-    <td>Panas berlebih pada motor/pompa</td>
-    <td><input type="radio" name="mech_heat" value="GOOD" required></td>
-    <td><input type="radio" name="mech_heat" value="NO"></td>
-    <td><input type="text" name="remark_mech_heat"></td>
-  </tr>
-</table>
-
-<div class="section-title">CEK OIL LEAKING</div>
-<table>
-  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-  <tr>
-    <td>Solenoid</td>
-    <td><input type="radio" name="leak_solenoid" value="GOOD" required></td>
-    <td><input type="radio" name="leak_solenoid" value="NO"></td>
-    <td><input type="text" name="remark_leak_solenoid"></td>
-  </tr>
-  <tr>
-    <td>Piping / Hose</td>
-    <td><input type="radio" name="leak_piping" value="GOOD" required></td>
-    <td><input type="radio" name="leak_piping" value="NO"></td>
-    <td><input type="text" name="remark_leak_piping"></td>
-  </tr>
-  <tr>
-    <td>Adapter / Connector</td>
-    <td><input type="radio" name="leak_adapter" value="GOOD" required></td>
-    <td><input type="radio" name="leak_adapter" value="NO"></td>
-    <td><input type="text" name="remark_leak_adapter"></td>
-  </tr>
-</table>
-
-<div class="section-title">CALIBRATION</div>
-<table>
-  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
-  <tr>
-    <td>Calibration</td>
-    <td><input type="radio" name="calibration" value="GOOD" required></td>
-    <td><input type="radio" name="calibration" value="NO"></td>
-    <td><input type="text" name="remark_calibration"></td>
-  </tr>
-</table>
-
-<div class="section-title">MAINTENANCE CONDITION</div>
-<table>
-  <tr><th>Panel</th><th>Remark</th></tr>
-  <tr>
-    <td><input type="text" name="maintenance_panel" placeholder="Kondisi panel" required></td>
-    <td><input type="text" name="remark_maintenance_panel"></td>
-  </tr>
-  <tr><th>Tools</th><th>Remark</th></tr>
-  <tr>
-    <td><input type="text" name="maintenance_tools" placeholder="Kondisi tools" required></td>
-    <td><input type="text" name="remark_maintenance_tools"></td>
-  </tr>
-</table>
-
-    <button type="submit">Submit</button>
-  </form>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist P2H Crimping</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script>
-    document.getElementById("checklistForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("Checklist berhasil disubmit!");
-      // Di sini kamu bisa menambahkan logika untuk menyimpan ke database atau export ke Excel
-    });
+    const checklistItems = [
+      { section: "DISPLAY", items: ["Display"] },
+      { section: "SWITCH PANEL", items: ["Switch ON/OFF", "Switch Adjuster", "Panel Release", "Panel Crimp"] },
+      { section: "COVER", items: ["Swager", "Swager Racks", "Swager Dies (Batu Dash)"] },
+      { section: "CEK OIL", items: ["Cek Oil Level"] },
+      { section: "GREASING", items: ["Area Dudukan Batu Dash"] },
+      { section: "ELECTRICAL", items: ["Power"] },
+      { section: "MECHANICAL", items: [
+        "Cek Function Crimp", "Cek Function Release", "Putaran Motor searah jarum jam",
+        "Suara bising motor", "Panas berlebih motor"] },
+      { section: "CEK OIL LEAKING", items: ["Solenoid", "Piping/Hose", "Adapter/Connector"] },
+      { section: "CALIBRATION", items: ["Calibration"] }
+    ];
+
+    function generateChecklist() {
+      const container = document.getElementById('checklistContainer');
+      checklistItems.forEach(group => {
+        const section = document.createElement('h3');
+        section.textContent = group.section;
+        section.className = 'text-lg font-semibold mt-4';
+        container.appendChild(section);
+
+        group.items.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'mb-2';
+          div.innerHTML = `
+            <label class="block font-medium">${item}</label>
+            <div class="flex items-center gap-2">
+              <label><input type="radio" name="${item}" value="GOOD" required> Good</label>
+              <label><input type="radio" name="${item}" value="NO"> No</label>
+              <input type="file" name="${item}_foto" accept="image/*" class="ml-2">
+              <input type="text" name="${item}_remark" placeholder="Remark" class="border p-1 w-1/2">
+            </div>`;
+          container.appendChild(div);
+        });
+      });
+    }
+
+    function exportToExcel() {
+      const form = document.getElementById("checklistForm");
+      const data = [
+        ["Item", "Kondisi", "Remark"]
+      ];
+      checklistItems.forEach(group => {
+        group.items.forEach(item => {
+          const radios = form.querySelectorAll(`input[name='${item}']`);
+          const selected = [...radios].find(r => r.checked)?.value || "";
+          const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+          data.push([item, selected, remark]);
+        });
+      });
+
+      const ws = XLSX.utils.aoa_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Checklist");
+      XLSX.writeFile(wb, "checklist_p2h.xlsx");
+    }
+
+    window.onload = generateChecklist;
   </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4">
+  <div class="max-w-2xl mx-auto bg-white shadow p-6 rounded-xl">
+    <h1 class="text-xl font-bold mb-4">Checklist P2H Mesin Crimping</h1>
+    <form id="checklistForm" onsubmit="event.preventDefault(); exportToExcel();">
+      <div class="mb-4">
+        <label class="block">Nama Pemeriksa: <input type="text" name="nama" required class="border w-full p-2"></label>
+      </div>
+      <div class="mb-4">
+        <label class="block">Tanggal: <input type="date" name="tanggal" required class="border w-full p-2"></label>
+      </div>
+      <div class="mb-4">
+        <label class="block">No Asset: <input type="text" name="asset" required class="border w-full p-2"></label>
+      </div>
+      <div class="mb-4">
+        <label class="block">Lokasi: <input type="text" name="lokasi" required class="border w-full p-2"></label>
+      </div>
+
+      <div id="checklistContainer"></div>
+
+      <div class="mt-6">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Export ke Excel</button>
+      </div>
+    </form>
+  </div>
 </body>
 </html>
