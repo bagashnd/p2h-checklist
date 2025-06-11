@@ -2,317 +2,216 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Form P2H Crimping Machine</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Form Checklist P2H Crimping</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f7f7f7;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .container {
-      background-color: #fff;
-      width: 100%;
-      max-width: 800px;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-
-    h2, h3 {
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    label {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 10px;
-      color: #666;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #0072ff;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background-color: #005bb5;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f0f0f0;
-    }
-
-    .section {
-      margin-top: 30px;
-    }
-
-    @media (max-width: 600px) {
-      .container { padding: 20px; }
-      input, select, button { font-size: 14px; }
-    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .section-title { margin-top: 30px; font-size: 1.2em; font-weight: bold; }
+    input[type="text"], input[type="date"] { width: 100%; padding: 5px; }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="logo">
-    <img src="logo.png" alt="Logo Perusahaan">
-  </div>
+  <h2>Form Checklist P2H Mesin Crimping</h2>
 
-  <!-- Login Form -->
-  <div id="loginForm">
-    <h2>Login Operator</h2>
-    <form onsubmit="login(event)">
-      <label>Username:
-        <input type="text" id="username" required>
-      </label>
-      <label>Password:
-        <input type="password" id="password" required>
-      </label>
-      <button type="submit">Login</button>
-    </form>
-  </div>
+  <form id="checklistForm">
+    <label>Nama Pemeriksa: <input type="text" name="nama" required></label><br><br>
+    <label>Tanggal: <input type="date" name="tanggal" required></label><br><br>
+    <label>No Asset: <input type="text" name="asset" required></label><br><br>
+    <label>Lokasi: <input type="text" name="lokasi" required></label><br><br>
 
-  <!-- Form P2H -->
-  <div id="p2hForm" class="hidden">
-    <label>Nama Pemeriksa:
-      <input type="text" id="namaOperator">
-    </label>
-    <label>ID Mesin:
-      <input type="text" id="idMesin">
-    </label>
-    <label>HM (Hours Meter):
-      <input type="number" id="hmMesin" placeholder="Isi HM Mesin Crimping">
-    </label>
-    <label>Tanggal Pemeriksaan:
-      <input type="date" id="tanggal">
-    </label>
-    <label>Jam Pengisian:
-      <input type="time" id="jamPengisian">
-    </label>
-    <label>Lokasi Pemeriksaan:
-      <input type="text" id="lokasi" placeholder="Sedang mendeteksi lokasi...">
-    </label>
+    <!-- Section -->
+    <div class="section-title">DISPLAY</div>
+    <table>
+      <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+      <tr>
+        <td>Display</td>
+        <td><input type="radio" name="display" value="GOOD" required></td>
+        <td><input type="radio" name="display" value="NO"></td>
+        <td><input type="text" name="remark_display"></td>
+      </tr>
+    </table>
 
-    <!-- Checklist Harian -->
-    <div class="section">
-      <h3>Checklist Harian</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Komponen</th>
-            <th>Status</th>
-            <th>Catatan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Power Supply</td>
-            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-          <tr>
-            <td>Hydraulic Unit</td>
-            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-          <tr>
-            <td>Crimp Dies</td>
-            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-          <tr>
-            <td>Cylinder Movement</td>
-            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-          <tr>
-            <td>Control Panel</td>
-            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-          <tr>
-            <td>Grease Point</td>
-            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-          <tr>
-            <td>Emergency Stop</td>
-            <td><select><option>Pilih</option><option>Baik</option><option>Tidak Baik</option><option>Tidak Ada</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="section-title">SWITCH PANEL</div>
+    <table>
+      <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+      <tr>
+        <td>Switch ON/OFF</td>
+        <td><input type="radio" name="switch_onoff" value="GOOD" required></td>
+        <td><input type="radio" name="switch_onoff" value="NO"></td>
+        <td><input type="text" name="remark_onoff"></td>
+      </tr>
+      <tr>
+        <td>Switch Adjuster</td>
+        <td><input type="radio" name="switch_adjuster" value="GOOD" required></td>
+        <td><input type="radio" name="switch_adjuster" value="NO"></td>
+        <td><input type="text" name="remark_adjuster"></td>
+      </tr>
+      <tr>
+        <td>Panel Release</td>
+        <td><input type="radio" name="panel_release" value="GOOD" required></td>
+        <td><input type="radio" name="panel_release" value="NO"></td>
+        <td><input type="text" name="remark_release"></td>
+      </tr>
+      <tr>
+        <td>Panel Crimp</td>
+        <td><input type="radio" name="panel_crimp" value="GOOD" required></td>
+        <td><input type="radio" name="panel_crimp" value="NO"></td>
+        <td><input type="text" name="remark_crimp"></td>
+      </tr>
+    </table>
 
-    <!-- Checklist Mingguan -->
-    <div class="section">
-      <h3>Pemeriksaan Mingguan</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Item Pemeriksaan</th>
-            <th>Status</th>
-            <th>Catatan</th>
-          </tr>
-        </thead>
-        <tbody id="mingguanChecklist">
-          <tr>
-            <td>Bersihkan die cage dengan kuas</td>
-            <td><select><option>Pilih</option><option>Selesai</option><option>Belum</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-          <tr>
-            <td>Greasing piston cone & shoe cluster</td>
-            <td><select><option>Pilih</option><option>Selesai</option><option>Belum</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-          <tr>
-            <td>Kalibrasi ukuran crimp (opsional)</td>
-            <td><select><option>Pilih</option><option>Selesai</option><option>Tidak Diperlukan</option></select></td>
-            <td><input type="text"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="section-title">COVER</div>
+    <table>
+      <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+      <tr>
+        <td>Swager</td>
+        <td><input type="radio" name="swager" value="GOOD" required></td>
+        <td><input type="radio" name="swager" value="NO"></td>
+        <td><input type="text" name="remark_swager"></td>
+      </tr>
+      <tr>
+        <td>Swager Racks</td>
+        <td><input type="radio" name="swager_racks" value="GOOD" required></td>
+        <td><input type="radio" name="swager_racks" value="NO"></td>
+        <td><input type="text" name="remark_swager_racks"></td>
+      </tr>
+      <tr>
+        <td>Swager Dies (Batu Dash)</td>
+        <td><input type="radio" name="swager_dies" value="GOOD" required></td>
+        <td><input type="radio" name="swager_dies" value="NO"></td>
+        <td><input type="text" name="remark_swager_dies"></td>
+      </tr>
+    </table>
 
-    <!-- Upload dan Tombol -->
-    <div class="section">
-      <label>Upload Foto Mesin:
-        <input type="file" id="fotoMesin" accept="image/*" capture="environment">
-      </label>
+    <!-- Tambahkan bagian lain seperti: CEK OIL, GREASING, ELECTRICAL, MECHANICAL, dll. sesuai kebutuhan -->
+<div class="section-title">CEK OIL LEVEL</div>
+<table>
+  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+  <tr>
+    <td>Cek Oil Level</td>
+    <td><input type="radio" name="oil_level" value="GOOD" required></td>
+    <td><input type="radio" name="oil_level" value="NO"></td>
+    <td><input type="text" name="remark_oil_level"></td>
+  </tr>
+</table>
 
-      <button onclick="submitForm()">Submit</button>
-      <button onclick="exportToExcel()">Export ke Excel</button>
-    </div>
-  </div>
-</div>
+<div class="section-title">GREASING</div>
+<table>
+  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+  <tr>
+    <td>Area Dudukan Batu Dash</td>
+    <td><input type="radio" name="greasing_dash" value="GOOD" required></td>
+    <td><input type="radio" name="greasing_dash" value="NO"></td>
+    <td><input type="text" name="remark_greasing_dash"></td>
+  </tr>
+</table>
 
-<!-- Script Login -->
-<script>
-  function login(event) {
-    event.preventDefault();
-    const user = document.getElementById("username").value;
-    const pass = document.getElementById("password").value;
-    if (user === "operator" && pass === "1234") {
-      document.getElementById("loginForm").style.display = "none";
-      document.getElementById("p2hForm").classList.remove("hidden");
-    } else {
-      alert("Username atau password salah.");
-    }
-  }
+<div class="section-title">ELECTRICAL</div>
+<table>
+  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+  <tr>
+    <td>Power</td>
+    <td><input type="radio" name="electrical_power" value="GOOD" required></td>
+    <td><input type="radio" name="electrical_power" value="NO"></td>
+    <td><input type="text" name="remark_electrical_power"></td>
+  </tr>
+</table>
 
-  function submitForm() {
-    alert("Form berhasil dikirim (simulasi).");
-  }
+<div class="section-title">MECHANICAL</div>
+<table>
+  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+  <tr>
+    <td>Cek Function Crimp</td>
+    <td><input type="radio" name="mech_crimp" value="GOOD" required></td>
+    <td><input type="radio" name="mech_crimp" value="NO"></td>
+    <td><input type="text" name="remark_mech_crimp"></td>
+  </tr>
+  <tr>
+    <td>Cek Function Release</td>
+    <td><input type="radio" name="mech_release" value="GOOD" required></td>
+    <td><input type="radio" name="mech_release" value="NO"></td>
+    <td><input type="text" name="remark_mech_release"></td>
+  </tr>
+  <tr>
+    <td>Putaran Motor/Pompa searah jarum jam</td>
+    <td><input type="radio" name="mech_rotation" value="GOOD" required></td>
+    <td><input type="radio" name="mech_rotation" value="NO"></td>
+    <td><input type="text" name="remark_mech_rotation"></td>
+  </tr>
+  <tr>
+    <td>Suara bising pada motor/pompa</td>
+    <td><input type="radio" name="mech_noise" value="GOOD" required></td>
+    <td><input type="radio" name="mech_noise" value="NO"></td>
+    <td><input type="text" name="remark_mech_noise"></td>
+  </tr>
+  <tr>
+    <td>Panas berlebih pada motor/pompa</td>
+    <td><input type="radio" name="mech_heat" value="GOOD" required></td>
+    <td><input type="radio" name="mech_heat" value="NO"></td>
+    <td><input type="text" name="remark_mech_heat"></td>
+  </tr>
+</table>
 
-  window.onload = function () {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        const lat = pos.coords.latitude.toFixed(5);
-        const lon = pos.coords.longitude.toFixed(5);
-        document.getElementById('lokasi').value = `${lat}, ${lon}`;
-      }, function () {
-        document.getElementById('lokasi').placeholder = "Lokasi tidak ditemukan";
-      });
-    }
-  };
-</script>
+<div class="section-title">CEK OIL LEAKING</div>
+<table>
+  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+  <tr>
+    <td>Solenoid</td>
+    <td><input type="radio" name="leak_solenoid" value="GOOD" required></td>
+    <td><input type="radio" name="leak_solenoid" value="NO"></td>
+    <td><input type="text" name="remark_leak_solenoid"></td>
+  </tr>
+  <tr>
+    <td>Piping / Hose</td>
+    <td><input type="radio" name="leak_piping" value="GOOD" required></td>
+    <td><input type="radio" name="leak_piping" value="NO"></td>
+    <td><input type="text" name="remark_leak_piping"></td>
+  </tr>
+  <tr>
+    <td>Adapter / Connector</td>
+    <td><input type="radio" name="leak_adapter" value="GOOD" required></td>
+    <td><input type="radio" name="leak_adapter" value="NO"></td>
+    <td><input type="text" name="remark_leak_adapter"></td>
+  </tr>
+</table>
 
-<!-- Script Export Excel -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script>
-  function exportToExcel() {
-    const wb = XLSX.utils.book_new();
-    const ws_data = [];
+<div class="section-title">CALIBRATION</div>
+<table>
+  <tr><th>Item</th><th>Good</th><th>No</th><th>Remark</th></tr>
+  <tr>
+    <td>Calibration</td>
+    <td><input type="radio" name="calibration" value="GOOD" required></td>
+    <td><input type="radio" name="calibration" value="NO"></td>
+    <td><input type="text" name="remark_calibration"></td>
+  </tr>
+</table>
 
-    const nama = document.getElementById("namaOperator").value;
-    const idMesin = document.getElementById("idMesin").value;
-    const hm = document.getElementById("hmMesin").value;
-    const tanggal = document.getElementById("tanggal").value;
-    const jam = document.getElementById("jamPengisian").value;
-    const lokasi = document.getElementById("lokasi").value;
+<div class="section-title">MAINTENANCE CONDITION</div>
+<table>
+  <tr><th>Panel</th><th>Remark</th></tr>
+  <tr>
+    <td><input type="text" name="maintenance_panel" placeholder="Kondisi panel" required></td>
+    <td><input type="text" name="remark_maintenance_panel"></td>
+  </tr>
+  <tr><th>Tools</th><th>Remark</th></tr>
+  <tr>
+    <td><input type="text" name="maintenance_tools" placeholder="Kondisi tools" required></td>
+    <td><input type="text" name="remark_maintenance_tools"></td>
+  </tr>
+</table>
 
-    ws_data.push(["Nama Operator", nama]);
-    ws_data.push(["ID Mesin", idMesin]);
-    ws_data.push(["HM", hm]);
-    ws_data.push(["Tanggal", tanggal]);
-    ws_data.push(["Jam", jam]);
-    ws_data.push(["Lokasi", lokasi]);
-    ws_data.push([]);
+    <button type="submit">Submit</button>
+  </form>
 
-    ws_data.push(["Komponen", "Status", "Catatan"]);
-
-    document.querySelectorAll("table tbody tr").forEach(row => {
-      const komponen = row.cells[0].innerText;
-      const status = row.cells[1].querySelector("select").value;
-      const catatan = row.cells[2].querySelector("input").value;
-      ws_data.push([komponen, status, catatan]);
+  <script>
+    document.getElementById("checklistForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Checklist berhasil disubmit!");
+      // Di sini kamu bisa menambahkan logika untuk menyimpan ke database atau export ke Excel
     });
-
-    const ws = XLSX.utils.aoa_to_sheet(ws_data);
-    XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-    XLSX.writeFile(wb, `P2H-Crimping-${tanggal}.xlsx`);
-  }
-</script>
-
+  </script>
 </body>
 </html>
