@@ -97,6 +97,19 @@ const checklistItems = [
 
 function generateChecklist() {
   const container = document.getElementById('checklistContainer');
+  const yesNoItems = [
+    "Cek Oil Level",
+    "Greasing Area Dudukan Batu Dash",
+    "Power Supply",
+    "Cek Function Crimp",
+    "Cek Function Release",
+    "Putaran motor/pompa searah jarum jam",
+    "Cek Oil Leaking Solenoid",
+    "Cek Oil Leaking Piping/Hose",
+    "Cek Oil leaking Adaptor/Connector",
+    "Calibration"
+  ];
+
   checklistItems.forEach((group, idx) => {
     const section = document.createElement('div');
     section.className = 'bg-white border rounded-lg shadow-sm overflow-hidden';
@@ -126,7 +139,9 @@ function generateChecklist() {
 
       let options = item.includes("bising") || item.includes("Panas")
         ? ['Ada', 'Tidak Ada']
-        : ['Good', 'No'];
+        : yesNoItems.includes(item)
+          ? ['Yes', 'No']
+          : ['Good', 'No'];
 
       itemDiv.innerHTML = `
         <div class="flex flex-col gap-2">
