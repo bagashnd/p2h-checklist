@@ -34,14 +34,33 @@
     Checklist P2H Mesin Crimping
   </h1>
   <form id="checklistForm" onsubmit="submitToDatabase(event)">
-    <div class="grid gap-4">
-      <input name="nama" type="text" placeholder="Nama Pemeriksa" required class="p-2 border rounded w-full" />
-      <input name="tanggal" type="date" required class="p-2 border rounded w-full" />
-      <input name="jam" type="time" required class="p-2 border rounded w-full" />
-      <input name="asset" type="text" placeholder="No Asset" required class="p-2 border rounded w-full" />
-      <input name="lokasi" type="text" placeholder="Lokasi" required class="p-2 border rounded w-full" />
-      <input name="hours_meter" type="number" placeholder="Hours Meter (Jam)" min="0" required class="p-2 border rounded w-full" />
-    </div>
+<div class="grid gap-4">
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pemeriksa</label>
+    <input name="nama" type="text" required class="p-2 border rounded w-full" />
+  </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
+    <input name="tanggal" type="date" required class="p-2 border rounded w-full" />
+  </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Jam</label>
+    <input name="jam" type="time" required class="p-2 border rounded w-full" />
+  </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">No Asset</label>
+    <input name="asset" type="text" required class="p-2 border rounded w-full" />
+  </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Lokasi</label>
+    <input name="lokasi" type="text" required class="p-2 border rounded w-full" />
+  </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Hours Meter (Jam)</label>
+    <input name="hours_meter" type="number" min="0" required class="p-2 border rounded w-full" />
+  </div>
+</div>
+
 
     <div id="checklistContainer" class="mt-6 space-y-4"></div>
 
