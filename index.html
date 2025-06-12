@@ -1,120 +1,145 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checklist P2H Crimping</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .section-header {
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
 
 <!-- Login Page -->
-<div id="loginPage" class="min-h-screen flex items-center justify-center">
-  <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-sm">
-    <div class="flex justify-center mb-4">
-      <img src="logo.png" alt="Logo Perusahaan" class="h-20">
-    </div>
-    <h2 class="text-xl font-semibold text-center mb-4 text-gray-700">Login Aplikasi P2H</h2>
-    <form onsubmit="login(event)" class="space-y-4">
-      <input id="username" type="text" placeholder="Username" required class="w-full p-2 border rounded"/>
-      <input id="password" type="password" placeholder="Password" required class="w-full p-2 border rounded"/>
-      <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Masuk</button>
-    </form>
+<div id="loginPage" class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
+  <div class="flex justify-center mb-6">
+    <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="Logo Perusahaan" class="h-20">
   </div>
+  <h2 class="text-center text-xl font-semibold text-gray-700 mb-4">Login Aplikasi P2H</h2>
+  <form onsubmit="login(event)">
+    <input id="username" type="text" placeholder="Username" required class="mb-3 w-full px-3 py-2 border rounded">
+    <input id="password" type="password" placeholder="Password" required class="mb-4 w-full px-3 py-2 border rounded">
+    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Masuk</button>
+  </form>
 </div>
 
-<!-- Main Page -->
-<div id="mainPage" class="hidden min-h-screen p-6">
-  <div class="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-lg">
-    <div class="text-center mb-6">
-      <h1 class="text-xl font-bold flex items-center justify-center gap-2">
-        ✅ Checklist P2H Mesin Crimping
-      </h1>
+<!-- Main Checklist Page -->
+<div id="mainPage" class="hidden w-full max-w-3xl bg-white p-6 rounded-lg shadow-md overflow-y-auto">
+  <h1 class="text-lg font-bold text-center mb-6 flex items-center justify-center gap-2">
+    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Checklist Icon" class="w-6 h-6">
+    Checklist P2H Mesin Crimping
+  </h1>
+  <form id="checklistForm" onsubmit="submitToDatabase(event)">
+    <div class="grid gap-4">
+      <input name="nama" type="text" placeholder="Nama Pemeriksa" required class="p-2 border rounded w-full" />
+      <input name="tanggal" type="date" required class="p-2 border rounded w-full" />
+      <input name="jam" type="time" required class="p-2 border rounded w-full" />
+      <input name="asset" type="text" placeholder="No Asset" required class="p-2 border rounded w-full" />
+      <input name="lokasi" type="text" placeholder="Lokasi" required class="p-2 border rounded w-full" />
+      <input name="hours_meter" type="number" placeholder="Hours Meter (Jam)" min="0" required class="p-2 border rounded w-full" />
     </div>
-    <form id="checklistForm" onsubmit="submitToDatabase(event)">
-      <div class="grid gap-4">
-        <input name="nama" type="text" placeholder="Nama Pemeriksa" required class="p-2 border rounded w-full" />
-        <input name="tanggal" type="date" required class="p-2 border rounded w-full" />
-        <input name="jam" type="time" required class="p-2 border rounded w-full" />
-        <input name="asset" type="text" placeholder="No Asset" required class="p-2 border rounded w-full" />
-        <input name="lokasi" type="text" placeholder="Lokasi" required class="p-2 border rounded w-full" />
-        <input name="hours_meter" type="number" placeholder="Hours Meter (Jam)" min="0" required class="p-2 border rounded w-full" />
-        <input type="file" name="foto_umum" accept="image/*" class="p-2 border rounded w-full" />
-      </div>
 
-      <!-- Checklist Container -->
-      <div id="checklistContainer" class="mt-6 space-y-4"></div>
+    <div id="checklistContainer" class="mt-6 space-y-4"></div>
 
-      <!-- Submit & Export -->
-      <div class="mt-6 flex gap-4 justify-between">
-        <button type="submit" class="flex-1 bg-green-600 text-white p-2 rounded hover:bg-green-700">Submit</button>
-        <button type="button" onclick="exportToExcel()" class="flex-1 bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Export Excel</button>
-      </div>
-    </form>
-  </div>
+    <div class="mt-6">
+      <label class="block text-sm font-medium mb-1">Upload Foto Pemeriksaan:</label>
+      <input type="file" name="foto_umum" accept="image/*" class="p-2 border rounded w-full" />
+    </div>
+
+    <div class="mt-6 flex gap-4 justify-between">
+      <button type="submit" class="flex-1 bg-green-600 text-white p-2 rounded hover:bg-green-700">Submit</button>
+      <button type="button" onclick="exportToExcel()" class="flex-1 bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Export Excel</button>
+    </div>
+  </form>
 </div>
 
 <script>
 const checklistItems = [
   { section: "A. PANEL", items: ["Display", "Switch ON/OFF", "Switch Adjuster", "Panel Release", "Panel Crimp", "Cover"] },
   { section: "B. TOOLS", items: ["Swager", "Swager Racks", "Swager Dies (Batu Dash)"] },
-  {
-    section: "C. MAINTENANCE",
-    items: [
-      "Cek Oil Level",
-      "Greasing Area Dudukan Batu Dash",
-      "Power Supply",
-      "Cek Function Crimp",
-      "Cek Function Release",
-      "Putaran motor/pompa searah jarum jam",
-      "Suara bising pada motor/pompa",
-      "Panas berlebih pada motor/pompa",
-      "Cek Oil Leaking Solenoid",
-      "Cek Oil Leaking Piping/Hose",
-      "Cek Oil leaking Adaptor/Connector",
-      "Calibration"
-    ]
+  { section: "C. MAINTENANCE", items: [
+    "Cek Oil Level",
+    "Greasing Area Dudukan Batu Dash",
+    "Power Supply",
+    "Cek Function Crimp",
+    "Cek Function Release",
+    "Putaran motor/pompa searah jarum jam",
+    "Suara bising pada motor/pompa",
+    "Panas berlebih pada motor/pompa",
+    "Cek Oil Leaking Solenoid",
+    "Cek Oil Leaking Piping/Hose",
+    "Cek Oil leaking Adaptor/Connector",
+    "Calibration"]
   }
 ];
 
 function generateChecklist() {
-  const container = document.getElementById("checklistContainer");
+  const container = document.getElementById('checklistContainer');
   checklistItems.forEach((group, idx) => {
-    const sectionDiv = document.createElement("div");
-    const sublistId = `sublist-${idx}`;
+    const section = document.createElement('div');
+    section.className = 'bg-gray-100 border rounded-lg shadow-sm';
 
-    sectionDiv.innerHTML = `
-      <div class="bg-gray-200 p-3 rounded cursor-pointer flex justify-between items-center" onclick="document.getElementById('${sublistId}').classList.toggle('hidden')">
-        <span class="font-semibold text-gray-700">${group.section}</span>
-        <span>▼</span>
-      </div>
-      <div id="${sublistId}" class="space-y-3 mt-2 hidden"></div>
-    `;
+    const sectionHeader = document.createElement('div');
+    sectionHeader.className = 'section-header text-md font-semibold text-blue-700 p-3 border-b hover:bg-blue-50';
+    sectionHeader.textContent = group.section;
+    sectionHeader.onclick = () => {
+      const sublist = document.getElementById(`sublist-${idx}`);
+      sublist.classList.toggle('hidden');
+    };
 
-    const sublist = sectionDiv.querySelector(`#${sublistId}`);
+    const sublist = document.createElement('div');
+    sublist.id = `sublist-${idx}`;
+    sublist.className = 'p-3 space-y-4';
 
     group.items.forEach(item => {
-      const options = ["Suara bising pada motor/pompa", "Panas berlebih pada motor/pompa"].includes(item)
-        ? ["Ada", "Tidak Ada"]
-        : ["Good", "No"];
-      const itemHtml = `
-        <div class="border rounded p-3 bg-gray-50">
-          <label class="block font-medium text-sm mb-1">${item}</label>
-          <div class="flex gap-4 mb-2">
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'bg-white border rounded-lg p-3';
+
+      let options = item === "Panas berlebih pada motor/pompa" || item === "Suara bising pada motor/pompa"
+        ? ['Ada', 'Tidak Ada']
+        : ['Good', 'No'];
+
+      itemDiv.innerHTML = `
+        <div class="flex flex-col gap-2">
+          <span class="font-medium text-sm text-gray-800">${item}</span>
+          <div class="flex gap-4">
             ${options.map(opt => `
-              <label class="text-sm flex items-center gap-1">
-                <input type="radio" name="${item}" value="${opt}" required /> ${opt}
-              </label>`).join("")}
+              <label class="inline-flex items-center text-sm">
+                <input type="radio" name="${item}" value="${opt}" class="mr-1"> ${opt}
+              </label>
+            `).join('')}
           </div>
-          <input type="text" name="${item}_remark" placeholder="Catatan (opsional)" class="text-sm w-full border p-1 rounded" />
-        </div>
-      `;
-      sublist.innerHTML += itemHtml;
+          <input type="text" name="${item}_remark" placeholder="Catatan (opsional)" class="border rounded px-3 py-1 text-sm w-full">
+        </div>`;
+
+      sublist.appendChild(itemDiv);
     });
 
-    container.appendChild(sectionDiv);
+    section.appendChild(sectionHeader);
+    section.appendChild(sublist);
+    container.appendChild(section);
   });
+}
+
+function exportToExcel() {
+  const form = document.getElementById("checklistForm");
+  const data = [["Item", "Kondisi", "Remark"]];
+  checklistItems.forEach(group => {
+    group.items.forEach(item => {
+      const radios = form.querySelectorAll(`input[name='${item}']`);
+      const selected = [...radios].find(r => r.checked)?.value || "";
+      const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+      data.push([item, selected, remark]);
+    });
+  });
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Checklist");
+  XLSX.writeFile(wb, "checklist_p2h.xlsx");
 }
 
 function login(event) {
@@ -124,30 +149,22 @@ function login(event) {
   if (user === "admin" && pass === "1234") {
     document.getElementById("loginPage").classList.add("hidden");
     document.getElementById("mainPage").classList.remove("hidden");
-    generateChecklist();
   } else {
     alert("Username atau password salah");
   }
 }
 
-function exportToExcel() {
-  const form = document.getElementById("checklistForm");
-  const data = [["Item", "Status", "Remark"]];
-  checklistItems.forEach(group => {
-    group.items.forEach(item => {
-      const val = form.querySelector(`input[name="${item}"]:checked`)?.value || "";
-      const remark = form.querySelector(`input[name="${item}_remark"]`)?.value || "";
-      data.push([item, val, remark]);
-    });
-  });
-  const ws = XLSX.utils.aoa_to_sheet(data);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, "Checklist");
-  XLSX.writeFile(wb, "Checklist_P2H.xlsx");
+function showSuccessNotification(message) {
+  const notif = document.createElement('div');
+  notif.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+  notif.textContent = message;
+  document.body.appendChild(notif);
+  setTimeout(() => notif.remove(), 3000);
 }
 
 function submitToDatabase(event) {
   event.preventDefault();
+
   const form = document.getElementById("checklistForm");
   const formData = {
     nama: form.nama.value,
@@ -161,24 +178,25 @@ function submitToDatabase(event) {
 
   for (const group of checklistItems) {
     for (const item of group.items) {
-      const status = form.querySelector(`input[name="${item}"]:checked`);
-      if (!status) {
+      const radios = form.querySelectorAll(`input[name='${item}']`);
+      const selected = [...radios].find(r => r.checked)?.value;
+      if (!selected) {
         alert(`Checklist '${item}' belum diisi.`);
         return;
       }
-      const remark = form.querySelector(`input[name="${item}_remark"]`)?.value || "";
-      formData.checklist.push({ item, status: status.value, remark });
+      const remark = form.querySelector(`input[name='${item}_remark']`)?.value || "";
+      formData.checklist.push({ item, status: selected, remark });
     }
   }
 
-  fetch("https://your-api.com/api/checklist", {
+  fetch("https://your-api-server.com/api/checklist", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formData)
   })
   .then(res => {
     if (res.ok) {
-      alert("Checklist berhasil disimpan!");
+      showSuccessNotification("Checklist berhasil disimpan!");
       exportToExcel();
     } else {
       alert("Gagal menyimpan checklist.");
@@ -189,6 +207,8 @@ function submitToDatabase(event) {
     alert("Terjadi kesalahan koneksi.");
   });
 }
+
+window.onload = generateChecklist;
 </script>
 </body>
 </html>
