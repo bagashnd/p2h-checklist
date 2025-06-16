@@ -48,16 +48,16 @@
         <input name="serial" type="text" required class="p-2 border rounded w-full" />
       </div>
       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">No Asset</label>
+        <input name="asset" type="text" required class="p-2 border rounded w-full" />
+      </div>
+      <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
         <input name="tanggal" type="date" required class="p-2 border rounded w-full" />
       </div>
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Jam</label>
         <input name="jam" type="time" required class="p-2 border rounded w-full" />
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">No Asset</label>
-        <input name="asset" type="text" required class="p-2 border rounded w-full" />
       </div>
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Lokasi</label>
@@ -179,9 +179,9 @@ function exportToExcel() {
     ["Nama Pemeriksa", form.nama.value],
     ["Model", form.model.value],
     ["Serial Number", form.serial.value],
+    ["No Asset", form.asset.value] ,
     ["Tanggal", form.tanggal.value],
     ["Jam", form.jam.value],
-    ["No Asset", form.asset.value],
     ["Lokasi", form.lokasi.value],
     ["Hours Meter", form.hours_meter.value],
     [],
