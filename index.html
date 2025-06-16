@@ -40,6 +40,14 @@
         <input name="nama" type="text" required class="p-2 border rounded w-full" />
       </div>
       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Model</label>
+        <input name="model" type="text" required class="p-2 border rounded w-full" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Serial Number</label>
+        <input name="serial" type="text" required class="p-2 border rounded w-full" />
+      </div>
+      <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
         <input name="tanggal" type="date" required class="p-2 border rounded w-full" />
       </div>
@@ -167,7 +175,19 @@ function generateChecklist() {
 
 function exportToExcel() {
   const form = document.getElementById("checklistForm");
-  const data = [["Item", "Kondisi", "Remark"]];
+  const data = [
+    ["Nama Pemeriksa", form.nama.value],
+    ["Model", form.model.value],
+    ["Serial Number", form.serial.value],
+    ["Tanggal", form.tanggal.value],
+    ["Jam", form.jam.value],
+    ["No Asset", form.asset.value],
+    ["Lokasi", form.lokasi.value],
+    ["Hours Meter", form.hours_meter.value],
+    [],
+    ["Item", "Kondisi", "Remark"]
+  ];
+
   checklistItems.forEach(group => {
     group.items.forEach(item => {
       const radios = form.querySelectorAll(`input[name='${item}']`);
@@ -176,6 +196,7 @@ function exportToExcel() {
       data.push([item, selected, remark]);
     });
   });
+
   const ws = XLSX.utils.aoa_to_sheet(data);
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Checklist");
@@ -208,6 +229,8 @@ function submitToDatabase(event) {
   const form = document.getElementById("checklistForm");
   const formData = {
     nama: form.nama.value,
+    model: form.model.value,
+    serial: form.serial.value,
     tanggal: form.tanggal.value,
     jam: form.jam.value,
     asset: form.asset.value,
